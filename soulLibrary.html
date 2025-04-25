@@ -1,1 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soul Library</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@500&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Unbounded', cursive;
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 30px;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #7fffd4;
+      }
+      to {
+        text-shadow: 0 0 20px #fff, 0 0 40px #00e0ff;
+      }
+    }
+
+    .tabs {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .tab {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid #fff;
+      padding: 12px 25px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .tab:hover, .tab.active {
+      background: #7fffd4;
+      color: #1f1c2c;
+      transform: scale(1.1);
+    }
+
+    .content {
+      max-width: 700px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌌 Soul Library 🌟</h1>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showContent('yoga')">🧘‍♂️ Yoga</div>
+    <div class="tab" onclick="showContent('meditation')">🌀 Meditation</div>
+    <div class="tab" onclick="showContent('chakras')">🌈 Chakras</div>
+    <div class="tab" onclick="showContent('crystals')">💎 Crystals</div>
+  </div>
+
+  <div class="content" id="content">
+    <h2>🧘‍♂️ Yoga for the Soul</h2>
+    <p>Discover Hatha, Bhakti, and Raja Yoga. Align your body and spirit through asanas, breathing, and presence. 🕉️</p>
+  </div>
+
+  <script>
+    const contentMap = {
+      yoga: `<h2>🧘‍♂️ Yoga for the Soul</h2><p>Discover Hatha, Bhakti, and Raja Yoga. Align your body and spirit through asanas, breathing, and presence. 🕉️</p>`,
+      meditation: `<h2>🌀 Dive into Stillness</h2><p>Explore guided meditations for peace, gratitude, and clarity. Tune into the inner silence. ✨</p>`,
+      chakras: `<h2>🌈 Balance Your Chakras</h2><p>Learn about the 7 chakras, their meanings, and ways to heal them using affirmations and yoga. 🧿</p>`,
+      crystals: `<h2>💎 Crystal Energy</h2><p>Browse healing stones like Amethyst and Rose Quartz. Discover their powers and how they connect to your chakras. 🔮</p>`
+    };
+
+    function showContent(type) {
+      document.getElementById('content').innerHTML = contentMap[type];
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
 
