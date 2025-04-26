@@ -1,1 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spiritual Reflection Assessment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #4a3b36;
+            background: linear-gradient(135deg, #f8f4e9 0%, #eee5d6 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #fff;
+            box-shadow: 0 10px 30px rgba(120, 90, 70, 0.1);
+            border-radius: 15px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #e6d9c5;
+            padding-bottom: 1rem;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            color: #7e5941;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        p.intro {
+            font-size: 1.1rem;
+            color: #6b5c50;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .question-container {
+            margin-bottom: 2.5rem;
+            border-left: 4px solid #a68069;
+            padding-left: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .question-container:hover {
+            border-left-color: #c1a183;
+            background-color: #fdfaf5;
+        }
+
+        .question {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #7e5941;
+            font-weight: 600;
+        }
+
+        .slider-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 10px;
+            background: #e6d9c5;
+            border-radius: 5px;
+            outline: none;
+            margin: 1rem 0;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: #a68069;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            background: #7e5941;
+            transform: scale(1.1);
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 5px;
+        }
+
+        .slider-labels span {
+            font-size: 0.9rem;
+            color: #8a7566;
+        }
+
+        .value-display {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #a68069;
+            margin-top: 0.5rem;
+        }
+
+        button {
+            background: linear-gradient(135deg, #a68069 0%, #7e5941 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 2rem auto 0;
+            width: 200px;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #9a725c 0%, #6a4c38 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(126, 89, 65, 0.2);
+        }
+
+        #results {
+            display: none;
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 50px;
+            box-shadow: 0 10px 30px rgba(120, 90, 70, 0.1);
+        }
+
+        .result-section {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e6d9c5;
+        }
+
+        .result-section:last-child {
+            border-bottom: none;
+        }
+
+        .result-title {
+            font-family: 'Cormorant Garamond', serif;
+            color: #7e5941;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .score-display {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #a68069;
+            text-align: center;
+            margin: 1rem 0;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .fade-in {
+            animation: fadeIn 1s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #8a7566 0%, #6b5c50 100%);
+            margin-top: 2rem;
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(135deg, #7a6859 0%, #5b4c43 100%);
+        }
+
+        /* Additional spiritual elements */
+        .container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 50C50 77.6142 27.6142 100 0 100C-27.6142 100 -50 77.6142 -50 50C-50 22.3858 -27.6142 0 0 0C27.6142 0 50 22.3858 50 50Z' fill='%23a68069' fill-opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            opacity: 0.7;
+            z-index: -1;
+        }
+
+        /* Mandala-inspired decoration for headers */
+        header::after {
+            content: "☸";
+            display: block;
+            text-align: center;
+            font-size: 2rem;
+            color: #c1a183;
+            margin-top: 1rem;
+            opacity: 0.6;
+        }
+
+        /* Subtle gradient accents */
+        .question-container {
+            background: linear-gradient(to right, rgba(245, 240, 230, 0.3) 0%, rgba(255, 255, 255, 0) 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="assessment-form">
+        <header>
+            <h1>Spiritual Reflection Assessment</h1>
+            <p class="intro">Take a moment to reflect on your spiritual journey. Rate each statement from 1 (strongly disagree) to 5 (strongly agree) to discover insights about yourself and potential paths forward.</p>
+        </header>
+
+        <form id="spiritual-form">
+            <div class="question-container">
+                <p class="question">1. I often feel a sense of connection to something greater than myself.</p>
+                <div class="slider-container">
+                    <input type="range" min="1" max="5" value="3" class="slider" id="q1">
+                    <div class="slider-labels">
+                        <span>Strongly Disagree</span>
+                        <span>Neutral</span>
+                        <span>Strongly Agree</span>
+                    </div>
+                    <div class="value-display">Rating: <span id="q1-value">3</span></div>
+                </div>
+            </div>
+
+            <div class="question-container">
+                <p class="question">2. I make time for practices that nurture my inner peace (meditation, prayer, mindfulness, etc).</p>
+                <div class="slider-container">
+                    <input type="range" min="1" max="5" value="3" class="slider" id="q2">
+                    <div class="slider-labels">
+                        <span>Strongly Disagree</span>
+                        <span>Neutral</span>
+                        <span>Strongly Agree</span>
+                    </div>
+                    <div class="value-display">Rating: <span id="q2-value">3</span></div>
+                </div>
+            </div>
+
+            <div class="question-container">
+                <p class="question">3. I find meaning and purpose in my everyday life experiences.</p>
+                <div class="slider-container">
+                    <input type="range" min="1" max="5" value="3" class="slider" id="q3">
+                    <div class="slider-labels">
+                        <span>Strongly Disagree</span>
+                        <span>Neutral</span>
+                        <span>Strongly Agree</span>
+                    </div>
+                    <div class="value-display">Rating: <span id="q3-value">3</span></div>
+                </div>
+            </div>
+
+            <div class="question-container">
+                <p class="question">4. I regularly reflect on my values and whether my actions align with them.</p>
+                <div class="slider-container">
+                    <input type="range" min="1" max="5" value="3" class="slider" id="q4">
+                    <div class="slider-labels">
+                        <span>Strongly Disagree</span>
+                        <span>Neutral</span>
+                        <span>Strongly Agree</span>
+                    </div>
+                    <div class="value-display">Rating: <span id="q4-value">3</span></div>
+                </div>
+            </div>
+
+            <div class="question-container">
+                <p class="question">5. I feel compassion for others, including those different from me.</p>
+                <div class="slider-container">
+                    <input type="range" min="1" max="5" value="3" class="slider" id="q5">
+                    <div class="slider-labels">
+                        <span>Strongly Disagree</span>
+                        <span>Neutral</span>
+                        <span>Strongly Agree</span>
+                    </div>
+                    <div class="value-display">Rating: <span id="q5-value">3</span></div>
+                </div>
+            </div>
+
+            <div class="question-container">
+                <p class="question">6. I am able to find gratitude even during difficult times.</p>
+                <div class="slider-container">
+                    <input type="range" min="1" max="5" value="3" class="slider" id="q6">
+                    <div class="slider-labels">
+                        <span>Strongly Disagree</span>
+                        <span>Neutral</span>
+                        <span>Strongly Agree</span>
+                    </div>
+                    <div class="value-display">Rating: <span id="q6-value">3</span></div>
+                </div>
+            </div>
+
+            <div class="question-container">
+                <p class="question">7. I experience moments of awe, wonder, or transcendence in my life.</p>
+                <div class="slider-container">
+                    <input type="range" min="1" max="5" value="3" class="slider" id="q7">
+                    <div class="slider-labels">
+                        <span>Strongly Disagree</span>
+                        <span>Neutral</span>
+                        <span>Strongly Agree</span>
+                    </div>
+                    <div class="value-display">Rating: <span id="q7-value">3</span></div>
+                </div>
+            </div>
+
+            <div class="question-container">
+                <p class="question">8. I feel a sense of belonging to a community that shares my values or beliefs.</p>
+                <div class="slider-container">
+                    <input type="range" min="1" max="5" value="3" class="slider" id="q8">
+                    <div class="slider-labels">
+                        <span>Strongly Disagree</span>
+                        <span>Neutral</span>
+                        <span>Strongly Agree</span>
+                    </div>
+                    <div class="value-display">Rating: <span id="q8-value">3</span></div>
+                </div>
+            </div>
+
+            <div class="question-container">
+                <p class="question">9. I am forgiving of myself and others.</p>
+                <div class="slider-container">
+                    <input type="range" min="1" max="5" value="3" class="slider" id="q9">
+                    <div class="slider-labels">
+                        <span>Strongly Disagree</span>
+                        <span>Neutral</span>
+                        <span>Strongly Agree</span>
+                    </div>
+                    <div class="value-display">Rating: <span id="q9-value">3</span></div>
+                </div>
+            </div>
+
+            <div class="question-container">
+                <p class="question">10. I seek growth and learning on my spiritual journey.</p>
+                <div class="slider-container">
+                    <input type="range" min="1" max="5" value="3" class="slider" id="q10">
+                    <div class="slider-labels">
+                        <span>Strongly Disagree</span>
+                        <span>Neutral</span>
+                        <span>Strongly Agree</span>
+                    </div>
+                    <div class="value-display">Rating: <span id="q10-value">3</span></div>
+                </div>
+            </div>
+
+            <button type="submit" id="submit-btn">Discover Your Path</button>
+        </form>
+    </div>
+
+    <div class="container" id="results">
+        <header>
+            <h1>Your Spiritual Reflection Results</h1>
+            <p class="intro">Based on your responses, here are insights about your spiritual journey and suggestions for growth.</p>
+        </header>
+
+        <div class="result-section">
+            <h2 class="result-title">Self-Awareness</h2>
+            <div class="score-display">
+                <span id="self-score">0</span>/5
+            </div>
+            <p id="self-description"></p>
+        </div>
+
+        <div class="result-section">
+            <h2 class="result-title">Spiritual Connection</h2>
+            <div class="score-display">
+                <span id="spiritual-score">0</span>/5
+            </div>
+            <p id="spiritual-description"></p>
+        </div>
+
+        <div class="result-section">
+            <h2 class="result-title">Your Path Forward</h2>
+            <p id="path-description"></p>
+        </div>
+
+        <button class="back-btn" id="back-btn">Take Assessment Again</button>
+    </div>
+
+    <script>
+        // Update slider values on change
+        const sliders = document.querySelectorAll('.slider');
+        sliders.forEach(slider => {
+            const valueDisplay = document.getElementById(`${slider.id}-value`);
+            slider.addEventListener('input', () => {
+                valueDisplay.textContent = slider.value;
+            });
+        });
+
+        // Handle form submission
+        document.getElementById('spiritual-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect values
+            const values = {
+                q1: parseInt(document.getElementById('q1').value),
+                q2: parseInt(document.getElementById('q2').value),
+                q3: parseInt(document.getElementById('q3').value),
+                q4: parseInt(document.getElementById('q4').value),
+                q5: parseInt(document.getElementById('q5').value),
+                q6: parseInt(document.getElementById('q6').value),
+                q7: parseInt(document.getElementById('q7').value),
+                q8: parseInt(document.getElementById('q8').value),
+                q9: parseInt(document.getElementById('q9').value),
+                q10: parseInt(document.getElementById('q10').value)
+            };
+            
+            // Calculate scores (grouping questions into categories)
+            // Self-awareness: q3, q4, q6, q9
+            const selfScore = ((values.q3 + values.q4 + values.q6 + values.q9) / 20 * 5).toFixed(1);
+            
+            // Spiritual connection: q1, q2, q5, q7, q8, q10
+            const spiritualScore = ((values.q1 + values.q2 + values.q5 + values.q7 + values.q8 + values.q10) / 30 * 5).toFixed(1);
+            
+            // Set results
+            document.getElementById('self-score').textContent = selfScore;
+            document.getElementById('spiritual-score').textContent = spiritualScore;
+            
+            // Self-awareness descriptions
+            let selfDescription = '';
+            if (selfScore < 2) {
+                selfDescription = "You may benefit from developing a stronger sense of self-awareness. Consider incorporating regular reflection into your daily routine, perhaps through journaling or mindful moments throughout your day. By building self-awareness, you'll gain clarity about your values and purpose.";
+            } else if (selfScore < 3.5) {
+                selfDescription = "You have a moderate level of self-awareness. You reflect on your values and actions sometimes, but there's room to deepen this practice. Try setting aside dedicated time each week for introspection, asking yourself what brings you joy and meaning.";
+            } else if (selfScore < 4.5) {
+                selfDescription = "You demonstrate strong self-awareness. You understand your values and regularly assess whether your actions align with them. This foundation serves you well on your spiritual journey. Continue nurturing this aspect of yourself through regular reflection.";
+            } else {
+                selfDescription = "You have exceptional self-awareness. Your ability to understand yourself, align with your values, and find gratitude even in difficult times is remarkable. You likely serve as an inspiration to others around you in this regard.";
+            }
+            document.getElementById('self-description').textContent = selfDescription;
+            
+            // Spiritual connection descriptions
+            let spiritualDescription = '';
+            if (spiritualScore < 2) {
+                spiritualDescription = "You may not currently feel a strong spiritual connection in your life. This doesn't mean spirituality isn't for you - perhaps you haven't found a practice or perspective that resonates with your authentic self. Exploration with an open mind might reveal surprising insights.";
+            } else if (spiritualScore < 3.5) {
+                spiritualDescription = "You experience moments of spiritual connection, but they may not be consistent in your life. You might benefit from exploring different spiritual practices to find what deeply resonates with you. Your openness to growth indicates potential for deepening this dimension.";
+            } else if (spiritualScore < 4.5) {
+                spiritualDescription = "You have a meaningful spiritual connection that influences your life. You likely engage in practices that nurture this connection and experience a sense of something greater than yourself. Your compassion for others reflects this spiritual foundation.";
+            } else {
+                spiritualDescription = "You have a profound spiritual connection that permeates your daily experience. You regularly experience transcendent moments and maintain practices that nurture your inner peace. Your spiritual life likely provides you with resilience, purpose, and profound joy.";
+            }
+            document.getElementById('spiritual-description').textContent = spiritualDescription;
+            
+            // Path forward based on both scores
+            let pathDescription = '';
+            const avgScore = (parseFloat(selfScore) + parseFloat(spiritualScore)) / 2;
+            
+            if (parseFloat(selfScore) > parseFloat(spiritualScore) + 1) {
+                pathDescription = "Your results suggest you have strong self-awareness but might benefit from exploring spiritual connection more deeply. Consider these paths forward:<br><br>" +
+                "<strong>1. Explore Contemplative Practices:</strong> Try meditation, mindfulness, or prayer to nurture your connection with something greater than yourself.<br><br>" +
+                "<strong>2. Connect With Nature:</strong> Spending time in natural settings can foster a sense of awe and transcendence that deepens spiritual experience.<br><br>" +
+                "<strong>3. Seek Community:</strong> Finding others who share similar values can provide support and new perspectives on your spiritual journey.<br><br>" +
+                "Remember that spirituality is deeply personal - focus on what feels authentic to you rather than external expectations.";
+            } else if (parseFloat(spiritualScore) > parseFloat(selfScore) + 1) {
+                pathDescription = "Your results suggest you have a strong spiritual connection but might benefit from developing greater self-awareness. Consider these paths forward:<br><br>" +
+                "<strong>1. Regular Reflection:</strong> Set aside time for journaling or contemplative practices focused on understanding yourself more deeply.<br><br>" +
+                "<strong>2. Align Actions With Values:</strong> Regularly assess whether your daily choices reflect what matters most to you.<br><br>" +
+                "<strong>3. Practice Self-Compassion:</strong> Approach self-discovery with kindness, recognizing growth comes through gentle awareness rather than harsh judgment.<br><br>" +
+                "By developing greater self-awareness, your spiritual connection can become more integrated into your everyday life.";
+            } else if (avgScore < 2.5) {
+                pathDescription = "You're at the beginning of a meaningful journey of spiritual growth and self-discovery. Consider these paths forward:<br><br>" +
+                "<strong>1. Start Small:</strong> Begin with just 5 minutes daily of a practice that interests you - perhaps mindfulness, prayer, or reflection.<br><br>" +
+                "<strong>2. Read Widely:</strong> Explore different spiritual traditions and philosophies without pressure to commit to any particular path.<br><br>" +
+                "<strong>3. Find a Guide:</strong> Consider connecting with a spiritual mentor or counselor who can support your exploration.<br><br>" +
+                "<strong>4. Practice Gratitude:</strong> A simple gratitude practice can open the door to deeper spiritual awareness.<br><br>" +
+                "Remember that every spiritual journey begins with simple curiosity and openness.";
+            } else if (avgScore < 4) {
+                pathDescription = "You have a solid foundation in both self-awareness and spiritual connection. To continue growing, consider these paths forward:<br><br>" +
+                "<strong>1. Deepen Your Practice:</strong> Consider extending your current spiritual practices or exploring complementary ones.<br><br>" +
+                "<strong>2. Integrate Spirituality:</strong> Look for ways to bring spiritual awareness into everyday activities, from cooking to working.<br><br>" +
+                "<strong>3. Learn From Challenges:</strong> View difficulties as opportunities for spiritual growth rather than obstacles.<br><br>" +
+                "<strong>4. Share With Others:</strong> Consider ways to compassionately share your insights with others who might benefit.<br><br>" +
+                "Your balanced approach positions you well for continued meaningful growth.";
+            } else {
+                pathDescription = "Your responses reflect exceptional integration of spiritual connection and self-awareness. Consider these paths to continue your journey:<br><br>" +
+                "<strong>1. Mentorship:</strong> You have much wisdom to offer others - consider how you might compassionately guide those earlier in their journey.<br><br>" +
+                "<strong>2. Advanced Practice:</strong> Explore deeper contemplative practices that build on your strong foundation.<br><br>" +
+                "<strong>3. Community Leadership:</strong> Consider ways to nurture spiritual community that aligns with your values.<br><br>" +
+                "<strong>4. Creative Expression:</strong> Explore artistic or creative ways to express your spiritual insights.<br><br>" +
+                "Your spiritual maturity is a gift - both to yourself and potentially to others around you.";
+            }
+            document.getElementById('path-description').innerHTML = pathDescription;
+            
+            // Show results
+            document.getElementById('assessment-form').style.display = 'none';
+            const results = document.getElementById('results');
+            results.style.display = 'block';
+            results.classList.add('fade-in');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        });
+        
+        // Back button functionality
+        document.getElementById('back-btn').addEventListener('click', function() {
+            document.getElementById('results').style.display = 'none';
+            document.getElementById('assessment-form').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
 
