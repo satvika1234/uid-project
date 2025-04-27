@@ -1,103 +1,961 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Soul Library</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@500&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soul Library | Soul Scape</title>
+    <style>
+        /* Soul Library Specific Styles */
+        :root {
+            --primary-color: #7e57c2;
+            --secondary-color: #b39ddb;
+            --text-color: #333;
+            --light-bg: #f5f0ff;
+            --accent-color: #4a148c;
+            --white: #ffffff;
+        }
 
-    body {
-      margin: 0;
-      font-family: 'Unbounded', cursive;
-      background: linear-gradient(135deg, #1f1c2c, #928dab);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      padding: 30px;
-    }
+        .library-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
 
-    h1 {
-      font-size: 3em;
-      margin-bottom: 20px;
-      animation: glow 2s infinite alternate;
-    }
+        .library-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
 
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 10px #fff, 0 0 20px #7fffd4;
-      }
-      to {
-        text-shadow: 0 0 20px #fff, 0 0 40px #00e0ff;
-      }
-    }
+        .library-header h1 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
 
-    .tabs {
-      display: flex;
-      gap: 20px;
-      margin-bottom: 30px;
-    }
+        .library-description {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
 
-    .tab {
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid #fff;
-      padding: 12px 25px;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(8px);
-    }
+        .search-container {
+            margin: 2rem auto;
+            max-width: 600px;
+        }
 
-    .tab:hover, .tab.active {
-      background: #7fffd4;
-      color: #1f1c2c;
-      transform: scale(1.1);
-    }
+        .search-box {
+            display: flex;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    .content {
-      max-width: 700px;
-      text-align: center;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 25px;
-      box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
-      backdrop-filter: blur(10px);
-    }
-  </style>
+        .search-box input {
+            flex: 1;
+            padding: 0.8rem 1.2rem;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-box button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 0 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-box button:hover {
+            background-color: var(--accent-color);
+        }
+
+        .library-categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .category-btn {
+            background-color: var(--white);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .resource-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-image {
+            height: 160px;
+            background-color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+        }
+
+        .card-content p {
+            margin-bottom: 1.2rem;
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+
+        .card-link {
+            display: inline-block;
+            color: var(--accent-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s;
+            margin-top: auto;
+        }
+
+        .card-link:hover {
+            color: var(--primary-color);
+        }
+
+        .library-featured {
+            background-color: var(--light-bg);
+            padding: 3rem 0;
+            margin: 3rem 0;
+        }
+
+        .featured-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .featured-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .featured-header h2 {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+        }
+
+        .featured-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .featured-item {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 350px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .featured-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .featured-image {
+            height: 180px;
+            background-color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+        }
+
+        .featured-details {
+            padding: 1.5rem;
+        }
+
+        .featured-details h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .featured-details p {
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* Modal styles */
+        .library-modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            overflow: auto;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            margin: 5% auto;
+            padding: 2rem;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalopen 0.4s;
+        }
+
+        @keyframes modalopen {
+            from {opacity: 0; transform: translateY(-50px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: var(--primary-color);
+        }
+
+        .modal-title {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .modal-body h3 {
+            color: var(--accent-color);
+            margin: 1.5rem 0 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .modal-body p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .modal-body ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .modal-body li {
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-items {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .featured-item {
+                max-width: 100%;
+            }
+
+            .search-box {
+                flex-direction: column;
+                border-radius: 8px;
+            }
+
+            .search-box input, 
+            .search-box button {
+                width: 100%;
+                border-radius: 0;
+            }
+
+            .search-box button {
+                padding: 0.8rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Soul Library Section -->
+    <div class="library-container">
+        <div class="library-header">
+            <h1>Soul Library</h1>
+            <p class="library-description">Explore our curated collection of spiritual wisdom, practices, and resources to deepen your connection and expand your consciousness. From ancient traditions to modern practices, find guidance for your spiritual journey.</p>
+        </div>
 
-  <h1>🌌 Soul Library 🌟</h1>
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="librarySearch" placeholder="Search the Soul Library...">
+                <button id="searchBtn">Search</button>
+            </div>
+        </div>
 
-  <div class="tabs">
-    <div class="tab active" onclick="showContent('yoga')">🧘‍♂️ Yoga</div>
-    <div class="tab" onclick="showContent('meditation')">🌀 Meditation</div>
-    <div class="tab" onclick="showContent('chakras')">🌈 Chakras</div>
-    <div class="tab" onclick="showContent('crystals')">💎 Crystals</div>
-  </div>
+        <div class="library-categories">
+            <button class="category-btn active" data-category="all">All Resources</button>
+            <button class="category-btn" data-category="spirituality">Spirituality Types</button>
+            <button class="category-btn" data-category="yoga">Yoga Asanas</button>
+            <button class="category-btn" data-category="chakras">Chakras</button>
+            <button class="category-btn" data-category="crystals">Crystal Healing</button>
+            <button class="category-btn" data-category="meditation">Meditation</button>
+            <button class="category-btn" data-category="energy">Energy Work</button>
+        </div>
 
-  <div class="content" id="content">
-    <h2>🧘‍♂️ Yoga for the Soul</h2>
-    <p>Discover Hatha, Bhakti, and Raja Yoga. Align your body and spirit through asanas, breathing, and presence. 🕉️</p>
-  </div>
+        <div class="resources-grid" id="resourcesGrid">
+            <!-- Spirituality Types -->
+            <div class="resource-card" data-category="spirituality">
+                <div class="card-image">🌍</div>
+                <div class="card-content">
+                    <h3>Eastern Spirituality</h3>
+                    <p>Explore traditions like Buddhism, Hinduism, Taoism, and their paths to enlightenment.</p>
+                    <a href="#" class="card-link" data-modal="easternSpirituality">Read More →</a>
+                </div>
+            </div>
+            <div class="resource-card" data-category="spirituality">
+                <div class="card-image">✝️</div>
+                <div class="card-content">
+                    <h3>Western Mysticism</h3>
+                    <p>Discover Christian mysticism, Kabbalah, Gnosticism, and Western esoteric paths.</p>
+                    <a href="#" class="card-link" data-modal="westernMysticism">Read More →</a>
+                </div>
+            </div>
+            <div class="resource-card" data-category="spirituality">
+                <div class="card-image">🌿</div>
+                <div class="card-content">
+                    <h3>Indigenous Wisdom</h3>
+                    <p>Learn about shamanism, Native American spirituality, and indigenous practices.</p>
+                    <a href="#" class="card-link" data-modal="indigenousWisdom">Read More →</a>
+                </div>
+            </div>
 
-  <script>
-    const contentMap = {
-      yoga: `<h2>🧘‍♂️ Yoga for the Soul</h2><p>Discover Hatha, Bhakti, and Raja Yoga. Align your body and spirit through asanas, breathing, and presence. 🕉️</p>`,
-      meditation: `<h2>🌀 Dive into Stillness</h2><p>Explore guided meditations for peace, gratitude, and clarity. Tune into the inner silence. ✨</p>`,
-      chakras: `<h2>🌈 Balance Your Chakras</h2><p>Learn about the 7 chakras, their meanings, and ways to heal them using affirmations and yoga. 🧿</p>`,
-      crystals: `<h2>💎 Crystal Energy</h2><p>Browse healing stones like Amethyst and Rose Quartz. Discover their powers and how they connect to your chakras. 🔮</p>`
-    };
+            <!-- Yoga Asanas -->
+            <div class="resource-card" data-category="yoga">
+                <div class="card-image">🧘‍♀️</div>
+                <div class="card-content">
+                    <h3>Foundation Asanas</h3>
+                    <p>Essential yoga poses for beginners to build strength, flexibility and spiritual awareness.</p>
+                    <a href="#" class="card-link" data-modal="foundationAsanas">Read More →</a>
+                </div>
+            </div>
+            <div class="resource-card" data-category="yoga">
+                <div class="card-image">🧘‍♂️</div>
+                <div class="card-content">
+                    <h3>Chakra Balancing Yoga</h3>
+                    <p>Specific asanas designed to activate and harmonize each energy center.</p>
+                    <a href="#" class="card-link" data-modal="chakraYoga">Read More →</a>
+                </div>
+            </div>
+            <div class="resource-card" data-category="yoga">
+                <div class="card-image">🌅</div>
+                <div class="card-content">
+                    <h3>Kundalini Yoga</h3>
+                    <p>Powerful practices to awaken spiritual energy and expand consciousness.</p>
+                    <a href="#" class="card-link" data-modal="kundaliniYoga">Read More →</a>
+                </div>
+            </div>
 
-    function showContent(type) {
-      document.getElementById('content').innerHTML = contentMap[type];
-      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-      event.target.classList.add('active');
-    }
-  </script>
+            <!-- Chakras -->
+            <div class="resource-card" data-category="chakras">
+                <div class="card-image">🔴</div>
+                <div class="card-content">
+                    <h3>Root Chakra (Muladhara)</h3>
+                    <p>The foundation chakra that grounds you and provides security and stability.</p>
+                    <a href="#" class="card-link" data-modal="rootChakra">Read More →</a>
+                </div>
+            </div>
+            <div class="resource-card" data-category="chakras">
+                <div class="card-image">🧡</div>
+                <div class="card-content">
+                    <h3>Sacral Chakra (Svadhisthana)</h3>
+                    <p>The center of creativity, passion, and emotional balance in your energy system.</p>
+                    <a href="#" class="card-link" data-modal="sacralChakra">Read More →</a>
+                </div>
+            </div>
+            <div class="resource-card" data-category="chakras">
+                <div class="card-image">💛</div>
+                <div class="card-content">
+                    <h3>Solar Plexus Chakra (Manipura)</h3>
+                    <p>Your power center for confidence, self-esteem, and personal willpower.</p>
+                    <a href="#" class="card-link" data-modal="solarPlexusChakra">Read More →</a>
+                </div>
+            </div>
+            <div class="resource-card" data-category="chakras">
+                <div class="card-image">💚</div>
+                <div class="card-content">
+                    <h3>Heart Chakra (Anahata)</h3>
+                    <p>The center of love, compassion, and connection with yourself and others.</p>
+                    <a href="#" class="card-link" data-modal="heartChakra">Read More →</a>
+                </div>
+            </div>
+            <div class="resource-card" data-category="chakras">
+                <div class="card-image">💙</div>
+                <div class="card-content">
+                    <h3>Throat Chakra (Vishuddha)</h3>
+                    <p>Your center of expression, communication, and speaking your truth.</p>
+                    <a href="#" class="card-link" data-modal="throatChakra">Read More →</a>
+                </div>
+            </div>
+            <div class="resource-card" data-category="chakras">
+                <div class="card-image">💜</div>
+                <div class="card-content">
+                    <h3>Third Eye Chakra (Ajna)</h3>
+                    <p>The seat of intuition, inner wisdom, and psychic perception.</p>
+                    <a href="#" class="card-link" data-modal="thirdEyeChakra">Read More →</a>
+                </div>
+            </div>
+            <div class="resource-card" data-category="chakras">
+                <div class="card-image">👑</div>
+                <div class="card-content">
+                    <h3>Crown Chakra (Sahasrara)</h3>
+                    <p>Your connection to divine consciousness and spiritual enlightenment.</p>
+                    <a href="#" class="card-link" data-modal="crownChakra">Read More →</a>
+                </div>
+            </div>
 
-</body>
-</html>
+            <!-- Crystals -->
+            <div class="resource-card" data-category="crystals">
+                <div class="card-image">💎</div>
+                <div class="card-content">
+                    <h3>Crystal Basics</h3>
+                    <p>An introduction to crystal energy and how to select, cleanse, and program your stones.</p>
+                    <a href="#" class="card-link" data-modal="crystalBasics">Read More →</a>
+                </div>
+            </div>
+            <div class="resource-card" data-category="crystals">
+                <div class="card-image">🔮</div>
+                <div class="card-content">
+                    <h3>Chakra Crystal Guide</h3>
+                    <p>Discover which crystals resonate with each chakra to enhance energy flow and healing.</p>
+                    <a href="#" class="card-link" data-modal="chakraCrystals">Read More →</a>
+                </div>
+            </div>
+            <div class="resource-card" data-category="crystals">
+                <div class="card-image">✨</div>
+                <div class="card-content">
+                    <h3>Crystal Grids</h3>
+                    <p>Create powerful crystal layouts for manifestation, protection, and spiritual growth.</p>
+                    <a href="#" class="card-link" data-modal="crystalGrids">Read More →</a>
+                </div>
+            </div>
 
+            <!-- Meditation -->
+            <div class="resource-card" data-category="meditation">
+                <div class="card-image">🧠</div>
+                <div class="card-content">
+                    <h3>Mindfulness Meditation</h3>
+                    <p>Cultivate present moment awareness with simple yet profound mindfulness practices.</p>
+                    <a href="#" class="card-link" data-modal="mindfulnessMeditation">Read More →</a>
+                </div>
+            </div>
+            <div class="resource-card" data-category="meditation">
+                <div class="card-image">🎵</div>
+                <div class="card-content">
+                    <h3>Sound Healing</h3>
+                    <p>Experience the therapeutic power of sound through singing bowls, mantras, and frequencies.</p>
+                    <a href="#" class="card-link" data-modal="soundHealing">Read More →</a>
+                </div>
+            </div>
+            <div class="resource-card" data-category="meditation">
+                <div class="card-image">🔆</div>
+                <div class="card-content">
+                    <h3>Guided Visualization</h3>
+                    <p>Journey within through powerful guided imagery for healing and transformation.</p>
+                    <a href="#" class="card-link" data-modal="guidedVisualization">Read More →</a>
+                </div>
+            </div>
+
+            <!-- Energy Work -->
+            <div class="resource-card" data-category="energy">
+                <div class="card-image">👐</div>
+                <div class="card-content">
+                    <h3>Reiki Healing</h3>
+                    <p>Learn about this Japanese energy healing technique and its principles for well-being.</p>
+                    <a href="#" class="card-link" data-modal="reikiHealing">Read More →</a>
+                </div>
+            </div>
+            <div class="resource-card" data-category="energy">
+                <div class="card-image">🌀</div>
+                <div class="card-content">
+                    <h3>Pranic Healing</h3>
+                    <p>Work with life force energy (prana) to cleanse and revitalize your energetic body.</p>
+                    <a href="#" class="card-link" data-modal="pranicHealing">Read More →</a>
+                </div>
+            </div>
+            <div class="resource-card" data-category="energy">
+                <div class="card-image">🧿</div>
+                <div class="card-content">
+                    <h3>Aura Cleansing</h3>
+                    <p>Techniques to purify and strengthen your energetic field for protection and vitality.</p>
+                    <a href="#" class="card-link" data-modal="auraCleansing">Read More →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="library-featured">
+        <div class="featured-container">
+            <div class="featured-header">
+                <h2>Featured Resources</h2>
+            </div>
+            <div class="featured-items">
+                <div class="featured-item">
+                    <div class="featured-image">🧘</div>
+                    <div class="featured-details">
+                        <h3>Complete Meditation Guide</h3>
+                        <p>A comprehensive journey from beginner meditation techniques to advanced spiritual practices.</p>
+                        <a href="#" class="card-link" data-modal="meditationGuide">Read More →</a>
+                    </div>
+                </div>
+                <div class="featured-item">
+                    <div class="featured-image">🔮</div>
+                    <div class="featured-details">
+                        <h3>Chakra Balancing System</h3>
+                        <p>An integrated approach to harmonizing your energy centers using multiple modalities.</p>
+                        <a href="#" class="card-link" data-modal="chakraSystem">Read More →</a>
+                    </div>
+                </div>
+                <div class="featured-item">
+                    <div class="featured-image">🌿</div>
+                    <div class="featured-details">
+                        <h3>Nature Connection Practices</h3>
+                        <p>Ancient and modern techniques for deepening your spiritual relationship with the natural world.</p>
+                        <a href="#" class="card-link" data-modal="natureConnection">Read More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for detailed content -->
+    <div id="libraryModal" class="library-modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 class="modal-title" id="modalTitle">Content Title</h2>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Script for Soul Library functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const resourcesGrid = document.getElementById('resourcesGrid');
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const searchInput = document.getElementById('librarySearch');
+            const searchBtn = document.getElementById('searchBtn');
+            const modal = document.getElementById('libraryModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+            const closeBtn = document.querySelector('.close-btn');
+            
+            // Category filtering
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    filterResources(category);
+                });
+            });
+            
+            function filterResources(category) {
+                const resources = document.querySelectorAll('.resource-card');
+                
+                resources.forEach(resource => {
+                    if (category === 'all' || resource.getAttribute('data-category') === category) {
+                        resource.style.display = 'block';
+                    } else {
+                        resource.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Search functionality
+            searchBtn.addEventListener('click', function() {
+                searchResources();
+            });
+            
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchResources();
+                }
+            });
+            
+            function searchResources() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const resources = document.querySelectorAll('.resource-card');
+                
+                resources.forEach(resource => {
+                    const title = resource.querySelector('h3').textContent.toLowerCase();
+                    const description = resource.querySelector('p').textContent.toLowerCase();
+                    
+                    if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                        resource.style.display = 'block';
+                    } else {
+                        resource.style.display = 'none';
+                    }
+                });
+                
+                // Reset category buttons
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                document.querySelector('[data-category="all"]').classList.add('active');
+            }
+            
+            // Modal functionality
+            const modalLinks = document.querySelectorAll('[data-modal]');
+            
+            modalLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const modalType = this.getAttribute('data-modal');
+                    openModal(modalType);
+                });
+            });
+            
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            
+            window.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+            
+            function openModal(modalType) {
+                // Sample modal content - in a real implementation, this would be loaded from a database
+                const modalContent = getModalContent(modalType);
+                
+                modalTitle.textContent = modalContent.title;
+                modalBody.innerHTML = modalContent.content;
+                modal.style.display = 'block';
+            }
+            
+            function getModalContent(modalType) {
+                // This is sample content - in a real implementation, you'd fetch this from your database
+                const contentLibrary = {
+                    rootChakra: {
+                        title: "Root Chakra (Muladhara)",
+                        content: `
+                            <p>The Root Chakra, or Muladhara in Sanskrit, is located at the base of your spine. It's associated with the color red and is the foundation of your energetic body.</p>
+                            
+                            <h3>Key Properties</h3>
+                            <ul>
+                                <li><strong>Location:</strong> Base of spine</li>
+                                <li><strong>Color:</strong> Red</li>
+                                <li><strong>Element:</strong> Earth</li>
+                                <li><strong>Function:</strong> Survival, grounding, stability, security</li>
+                            </ul>
+                            
+                            <h3>Signs of Balance</h3>
+                            <p>When your root chakra is balanced, you feel secure, grounded, and confident in your ability to provide for your basic needs. You have a sense of belonging in the world and trust in the natural flow of life.</p>
+                            
+                            <h3>Signs of Imbalance</h3>
+                            <ul>
+                                <li><strong>Blockage:</strong> Fear, anxiety, insecurity, financial worries</li>
+                                <li><strong>Overactive:</strong> Greed, materialism, rigid thinking, resistance to change</li>
+                            </ul>
+                            
+                            <h3>Healing Practices</h3>
+                            <ul>
+                                <li><strong>Yoga Poses:</strong> Mountain Pose, Warrior I, Standing Forward Fold</li>
+                                <li><strong>Crystals:</strong> Red Jasper, Black Tourmaline, Hematite, Smoky Quartz</li>
+                                <li><strong>Foods:</strong> Root vegetables, protein-rich foods, red foods</li>
+                                <li><strong>Affirmations:</strong> "I am safe and secure," "I am grounded and stable," "I trust in the flow of life"</li>
+                            </ul>
+                        `
+                    },
+                    meditationGuide: {
+                        title: "Complete Meditation Guide",
+                        content: `
+                            <p>Meditation is an ancient practice that cultivates awareness, clarity, and inner peace. This guide will take you through various techniques from beginner to advanced levels.</p>
+                            
+                            <h3>Benefits of Regular Meditation</h3>
+                            <ul>
+                                <li>Reduced stress and anxiety</li>
+                                <li>Improved focus and concentration</li>
+                                <li>Greater emotional stability</li>
+                                <li>Enhanced self-awareness</li>
+                                <li>Better sleep quality</li>
+                                <li>Spiritual growth and connection</li>
+                            </ul>
+                            
+                            <h3>Beginner Techniques</h3>
+                            <p><strong>Breath Awareness:</strong> Simply observe your natural breath without trying to change it. Notice the sensation of air entering and leaving your nostrils, the rise and fall of your chest or abdomen.</p>
+                            
+                            <p><strong>Body Scan:</strong> Systematically bring awareness to each part of your body, from toes to head, noticing sensations without judgment.</p>
+                            
+                            <h3>Intermediate Practices</h3>
+                            <p><strong>Loving-Kindness (Metta):</strong> Generate feelings of love and compassion first for yourself, then for loved ones, neutral people, difficult people, and finally all beings.</p>
+                            
+                            <p><strong>Chakra Meditation:</strong> Focus your attention on each energy center, visualizing its associated color and quality.</p>
+                            
+                            <h3>Advanced Techniques</h3>
+                            <p><strong>Vipassana:</strong> A deep practice of insight meditation, observing sensations throughout the body with equanimity to develop wisdom about the impermanent nature of all phenomena.</p>
+                            
+                            <p><strong>Self-Inquiry:</strong> Investigating the nature of the self through questions like "Who am I?" to dissolve identification with thoughts and access deeper consciousness.</p>
+                            
+                            <h3>Creating a Meditation Practice</h3>
+                            <ul>
+                                <li>Start with just 5-10 minutes daily and gradually increase</li>
+                                <li>Choose a consistent time and place</li>
+                                <li>Create a comfortable seat with proper alignment</li>
+                                <li>Be patient and kind with yourself as you develop the skill</li>
+                                <li>Consider using guided meditations to help establish your practice</li>
+                            </ul>
+                        `
+                    },
+                    // More content examples for other topics
+                    chakraSystem: {
+                        title: "Comprehensive Chakra Balancing System",
+                        content: `
+                            <p>The chakra system represents the flow of life energy (prana) through the body. This holistic approach combines multiple modalities to create balance and harmony across all seven major chakras.</p>
+                            
+                            <h3>Understanding the Chakra System</h3>
+                            <p>The Sanskrit word chakra means "wheel" or "disk," referring to spinning energy centers along the spine. Each chakra corresponds to specific organs, emotions, and spiritual aspects of life. When balanced, energy flows freely, supporting optimal physical, emotional, and spiritual health.</p>
+                            
+                            <h3>The Seven Major Chakras</h3>
+                            <ul>
+                                <li><strong>Root (Muladhara):</strong> Survival, security, foundation</li>
+                                <li><strong>Sacral (Svadhisthana):</strong> Creativity, passion, relationships</li>
+                                <li><strong>Solar Plexus (Manipura):</strong> Personal power, confidence</li>
+                                <li><strong>Heart (Anahata):</strong> Love, compassion, connection</li>
+                                <li><strong>Throat (Vishuddha):</strong> Communication, self-expression</li>
+                                <li><strong>Third Eye (Ajna):</strong> Intuition, insight, wisdom</li>
+                                <li><strong>Crown (Sahasrara):</strong> Spiritual connection, enlightenment</li>
+                            </ul>
+                            
+                            <h3>Integrated Balancing Approach</h3>
+                            <p>For optimal chakra health, combine these practices:</p>
+                            
+                            <p><strong>1. Yoga Asanas:</strong> Specific poses target individual chakras:</p>
+                            <ul>
+                                <li>Root: Mountain Pose, Chair Pose</li>
+                                <li>Sacral: Goddess Pose, Hip Openers</li>
+                                <li>Solar Plexus: Boat Pose, Warrior III</li>
+                                <li>Heart: Camel Pose, Cobra</li>
+                                <li>Throat: Fish Pose, Shoulder Stand</li>
+                                <li>Third Eye: Child's Pose, Eagle</li>
+                                <li>Crown: Headstand, Savasana</li>
+                            </ul>
+                            
+                            <p><strong>2. Crystal Healing:</strong> Place stones on corresponding chakra points:</p>
+                            <ul>
+                                <li>Root: Red Jasper, Black Tourmaline</li>
+                                <li>Sacral: Carnelian, Orange Calcite</li>
+                                <li>Solar Plexus: Citrine, Yellow Jasper</li>
+                                <li>Heart: Rose Quartz, Green Aventurine</li>
+                                <li>Throat: Blue Lace Agate, Sodalite</li>
+                                <li>Third Eye: Amethyst, Lapis Lazuli</li>
+                                <li>Crown: Clear Quartz, Selenite</li>
+                            </ul>
+                            
+                            <p><strong>3. Sound Therapy:</strong> Use specific tones and mantras:</p>
+                            <ul>
+                                <li>Root: LAM - Note C</li>
+                                <li>Sacral: VAM - Note D</li>
+                                <li>Solar Plexus: RAM - Note E</li>
+                                <li>Heart: YAM - Note F</li>
+                                <li>Throat: HAM - Note G</li>
+                                <li>Third Eye: OM - Note A</li>
+                                <li>Crown: Silence/AUM - Note B</li>
+                            </ul>
+                            
+                            <h3>21-Day Chakra Balancing Program</h3>
+                            <p>For deep healing, spend three days on each chakra, moving from root to crown:</p>
+                            <ul>
+                                <li>Day 1: Assessment and clearing</li>
+                                <li>Day 2: Activation and energizing</li>
+                                <li>Day 3: Balancing and integrating</li>
+                            </ul>
+                            
+                            <p>Regular chakra maintenance creates a foundation for spiritual growth, emotional wellbeing, and physical health.</p>
+                        `
+                    },
+                    easternSpirituality: {
+                        title: "Eastern Spirituality",
+                        content: `
+                            <p>Eastern spiritual traditions offer profound paths to enlightenment, self-realization, and inner peace. These ancient wisdom traditions have much to offer the modern seeker.</p>
+                            
+                            <h3>Buddhism</h3>
+                            <p>Founded by Siddhartha Gautama (the Buddha) in the 5th century BCE, Buddhism focuses on understanding the nature of suffering and finding liberation through the Eightfold Path. Key concepts include:</p>
+                            <ul>
+                                <li>The Four Noble Truths</li>
+                                <li>Meditation and mindfulness practices</li>
+                                <li>Concepts of impermanence and non-self</li>
+                                <li>Compassion for all beings</li>
+                            </ul>
+                            
+                            <h3>Hinduism</h3>
+                            <p>As one of the world's oldest religions, Hinduism encompasses a vast array of beliefs, practices, and philosophical schools. Central elements include:</p>
+                            <ul>
+                                <li>Concepts of dharma (duty/righteousness), karma, and reincarnation</li>
+                                <li>Various yogic paths: Jnana (knowledge), Bhakti (devotion), Karma (action), Raja (meditation)</li>
+                                <li>The understanding of Brahman (ultimate reality) and Atman (individual soul)</li>
+                                <li>Sacred texts like the Vedas, Upanishads, and Bhagavad Gita</li>
+                            </ul>
+                            
+                            <h3>Taoism</h3>
+                            <p>Originating in China through the teachings of Lao Tzu, Taoism emphasizes living in harmony with the Tao (the Way), the underlying principle of the universe. Key aspects include:</p>
+                            <ul>
+                                <li>The concept of wu wei (non-action or effortless action)</li>
+                                <li>Balance of yin and yang energies</li>
+                                <li>Simplicity, naturalness, and spontaneity</li>
+                                <li>Qigong and tai chi practices for energy cultivation</li>
+                            </ul>
+                            
+                            <h3>Practices to Explore</h3>
+                            <ul>
+                                <li><strong>Meditation:</strong> Vipassana, Zazen, or mantra meditation</li>
+                                <li><strong>Mindful Movement:</strong> Tai Chi, Qigong, or Yoga</li>
+                                <li><strong>Contemplative Study:</strong> Reading sacred texts with reflection</li>
+                                <li><strong>Community:</strong> Joining a sangha, temple, or study group</li>
+                            </ul>
+                        `
+                    },
+                    kundaliniYoga: {
+                        title: "Kundalini Yoga",
+                        content: `
+                            <p>Kundalini yoga is an ancient and powerful form of yoga that awakens the dormant spiritual energy located at the base of the spine. When awakened, this energy rises up through the chakras, activating higher states of consciousness.</p>
+                            
+                            <h3>The Serpent Power</h3>
+                            <p>Kundalini energy is often depicted as a coiled serpent resting at the base of the spine. Practices aim to awaken this energy and guide it upward through the central energy channel (sushumna nadi) to unite with cosmic consciousness at the crown chakra.</p>
+                            
+                            <h3>Key Elements of Kundalini Yoga</h3>
+                            <ul>
+                                <li><strong>Kriyas:</strong> Specific sequences of postures, breath, and sound</li>
+                                <li><strong>Pranayama:</strong> Breath control techniques like Breath of Fire</li>
+                                <li><strong>Mantras:</strong> Sacred sounds that focus the mind</li>
+                                <li><strong>Mudras:</strong> Hand positions that direct energy flow</li>
+                                <li><strong>Bandhas:</strong> Energy locks that contain and direct prana</li>
+                                <li><strong>Meditation:</strong> Focused awareness practices</li>
+                            </ul>
+                            
+                            <h3>Foundational Practices</h3>
+                            <p><strong>1. Breath of Fire (Kapalabhati):</strong> Rapid, rhythmic breathing through the nose with emphasis on the exhale, pumping the navel point.</p>
+                            
+                            <p><strong>2. Sat Kriya:</strong> Sitting on heels with arms stretched overhead, palms together, chanting "Sat Nam" while pulling the navel in on "Sat" and releasing on "Nam."</p>
+                            
+                            <p><strong>3. Spinal Flex:</strong> Sitting cross-legged, hands on knees, flexing spine forward and backward with breath coordination.</p>
+                            
+                            <h3>Precautions and Guidance</h3>
+                            <p>Kundalini awakening is powerful and should be approached with respect and proper guidance:</p>
+                            <ul>
+                                <li>Begin with shorter practice sessions (3-11 minutes)</li>
+                                <li>Seek guidance from an experienced teacher</li>
+                                <li>Honor your physical limitations</li>
+                                <li>Stay hydrated and maintain a clean diet</li>
+                                <li>Be attentive to energetic and emotional shifts</li>
+                            </ul>
+                            
+                            <h3>Benefits of Regular Practice</h3>
+                            <ul>
+                                <li>Increased vitality and awareness</li>
+                                <li>Enhanced intuition and creativity</li>
+                                <li>Greater emotional stability</li>
+                                <li>Spiritual awakening and expansion</li>
+                                <li>Strengthened nervous and glandular systems</li>
+                            </ul>
+                        `
+                    },
+                    // Add more content for other topics as needed
+                };
+
+                // Return requested content or a default message
+                return contentLibrary[modalType] || {
+                    title: "Content Coming Soon",
+                    content: "<p>We're currently developing detailed information for this topic. Please check back soon!</p>"
+                };
+            }
+        });
+        
+        // Function to handle category filtering and search results
+        function handleLibraryDisplay() {
+            // Future implementation for more advanced filtering and search functionality
+            console.log("Library display handler initialized");
+        }
+        
+        // Function to load more resources when needed
+        function loadMoreResources() {
+            // This would typically fetch additional resources from a database
+            console.log("Additional resources would be loaded here");
+            
+            // Simulate loading more resources (for demonstration only)
+            const loadMoreBtn = document.querySelector('.load-more-btn');
+            if (loadMoreBtn) {
+                loadMoreBtn.textContent = "Loading...";
+                
+                // Simulated delay to mimic server response
+                setTimeout(function() {
+                    loadMoreBtn.textContent = "Load More";
+                    // Logic to append more resources would go here
+                }, 1500);
+            }
+        }
+    </script>
