@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spiritual Reflection - Results</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: #4a3b36;
+            background: linear-gradient(135deg, #f8f4e9 0%, #eee5d6 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #fff;
+            box-shadow: 0 10px 30px rgba(120, 90, 70, 0.1);
+            border-radius: 15px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #e6d9c5;
+            padding-bottom: 1rem;
+        }
+
+        h1 {
+            color: #7e5941;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        p.intro {
+            font-size: 1.1rem;
+            color: #6b5c50;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .result-section {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e6d9c5;
+        }
+
+        .result-section:last-child {
+            border-bottom: none;
+        }
+
+        .result-title {
+            color: #7e5941;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .score-display {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #a68069;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        button {
+            background: linear-gradient(135deg, #a68069 0%, #7e5941 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 2rem auto 0;
+            width: 200px;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #9a725c 0%, #6a4c38 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(126, 89, 65, 0.2);
+        }
+
+        .fade-in {
+            animation: fadeIn 1s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Mandala-inspired decoration for headers */
+        header::after {
+            content: "☸";
+            display: block;
+            text-align: center;
+            font-size: 2rem;
+            color: #c1a183;
+            margin-top: 1rem;
+            opacity: 0.6;
+        }
+
+        .personal-greeting {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #7e5941;
+        }
+
+        .username {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container fade-in" id="results">
+        <header>
+            <h1>Your Spiritual Reflection Results</h1>
+            <p class="intro">Based on your responses, here are insights about your spiritual journey and suggestions for growth.</p>
+        </header>
+
+        <div class="personal-greeting">
+            <span class="username" id="user-name">Friend</span>, here's what we've discovered about your spiritual journey.
+        </div>
+
+        <div class="result-section">
+            <h2 class="result-title">Self-Awareness</h2>
+            <div class="score-display">
+                <span id="self-score">0</span>/5
+            </div>
+            <p id="self-description"></p>
+        </div>
+
+        <div class="result-section">
+            <h2 class="result-title">Spiritual Connection</h2>
+            <div class="score-display">
+                <span id="spiritual-score">0</span>/5
+            </div>
+            <p id="spiritual-description"></p>
+        </div>
+
+        <div class="result-section">
+            <h2 class="result-title">Your Path Forward</h2>
+            <p id="path-description"></p>
+        </div>
+
+<button onclick="startOver()">Take Assessment Again</button>
+    </div>
+
+    <script>
+        // Function to retrieve values from session storage
+        function getStoredValue(key, defaultValue = '3') {
+            const value = sessionStorage.getItem(key);
+            return value ? value : defaultValue;
+        }
+
+        // Calculate and display results
+        window.onload = function() {
+            // Get username
+            const userName = sessionStorage.getItem('userName');
+            if (userName) {
+                document.getElementById('user-name').textContent = userName;
+            }
+            
+            // Retrieve all question values
+            const values = {
+                q1: parseInt(getStoredValue('q1')),
+                q2: parseInt(getStoredValue('q2')),
+                q3: parseInt(getStoredValue('q3')),
+                q4: parseInt(getStoredValue('q4')),
+                q5: parseInt(getStoredValue('q5')),
+                q6: parseInt(getStoredValue('q6')),
+                q7: parseInt(getStoredValue('q7')),
+                q8: parseInt(getStoredValue('q8')),
+                q9: parseInt(getStoredValue('q9')),
+                q10: parseInt(getStoredValue('q10'))
+            };
+            
+            // Calculate scores (grouping questions into categories)
+            // Self-awareness: q3, q4, q6, q9
+            const selfScore = ((values.q3 + values.q4 + values.q6 + values.q9) / 20 * 5).toFixed(1);
+            
+            // Spiritual connection: q1, q2, q5, q7, q8, q10
+            const spiritualScore = ((values.q1 + values.q2 + values.q5 + values.q7 + values.q8 + values.q10) / 30 * 5).toFixed(1);
+            
+            // Set scores in display
+            document.getElementById('self-score').textContent = selfScore;
+            document.getElementById('spiritual-score').textContent = spiritualScore;
+            
+            // Self-awareness descriptions
+            let selfDescription = '';
+            if (selfScore < 2) {
+                selfDescription = "You may benefit from developing a stronger sense of self-awareness. Consider incorporating regular reflection into your daily routine, perhaps through journaling or mindful moments throughout your day. By building self-awareness, you'll gain clarity about your values and purpose.";
+            } else if (selfScore < 3.5) {
+                selfDescription = "You have a moderate level of self-awareness. You reflect on your values and actions sometimes, but there's room to deepen this practice. Try setting aside dedicated time each week for introspection, asking yourself what brings you joy and meaning.";
+            } else if (selfScore < 4.5) {
+                selfDescription = "You demonstrate strong self-awareness. You understand your values and regularly assess whether your actions align with them. This foundation serves you well on your spiritual journey. Continue nurturing this aspect of yourself through regular reflection.";
+            } else {
+                selfDescription = "You have exceptional self-awareness. Your ability to understand yourself, align with your values, and find gratitude even in difficult times is remarkable. You likely serve as an inspiration to others around you in this regard.";
+            }
+            document.getElementById('self-description').textContent = selfDescription;
+            
+            // Spiritual connection descriptions
+            let spiritualDescription = '';
+            if (spiritualScore < 2) {
+                spiritualDescription = "You may not currently feel a strong spiritual connection in your life. This doesn't mean spirituality isn't for you - perhaps you haven't found a practice or perspective that resonates with your authentic self. Exploration with an open mind might reveal surprising insights.";
+            } else if (spiritualScore < 3.5) {
+                spiritualDescription = "You experience moments of spiritual connection, but they may not be consistent in your life. You might benefit from exploring different spiritual practices to find what deeply resonates with you. Your openness to growth indicates potential for deepening this dimension.";
+            } else if (spiritualScore < 4.5) {
+                spiritualDescription = "You have a meaningful spiritual connection that influences your life. You likely engage in practices that nurture this connection and experience a sense of something greater than yourself. Your compassion for others reflects this spiritual foundation.";
+            } else {
+                spiritualDescription = "You have a profound spiritual connection that permeates your daily experience. You regularly experience transcendent moments and maintain practices that nurture your inner peace. Your spiritual life likely provides you with resilience, purpose, and profound joy.";
+            }
+            document.getElementById('spiritual-description').textContent = spiritualDescription;
+            
+            // Path forward based on both scores
+            let pathDescription = '';
+            const avgScore = (parseFloat(selfScore) + parseFloat(spiritualScore)) / 2;
+            
+            if (parseFloat(selfScore) > parseFloat(spiritualScore) + 1) {
+                pathDescription = "Your results suggest you have strong self-awareness but might benefit from exploring spiritual connection more deeply. Consider these paths forward:<br><br>" +
+                "<strong>1. Explore Contemplative Practices:</strong> Try meditation, mindfulness, or prayer to nurture your connection with something greater than yourself.<br><br>" +
+                "<strong>2. Connect With Nature:</strong> Spending time in natural settings can foster a sense of awe and transcendence that deepens spiritual experience.<br><br>" +
+                "<strong>3. Seek Community:</strong> Finding others who share similar values can provide support and new perspectives on your spiritual journey.<br><br>" +
+                "Remember that spirituality is deeply personal - focus on what feels authentic to you rather than external expectations.";
+            } else if (parseFloat(spiritualScore) > parseFloat(selfScore) + 1) {
+                pathDescription = "Your results suggest you have a strong spiritual connection but might benefit from developing greater self-awareness. Consider these paths forward:<br><br>" +
+                "<strong>1. Regular Reflection:</strong> Set aside time for journaling or contemplative practices focused on understanding yourself more deeply.<br><br>" +
+                "<strong>2. Align Actions With Values:</strong> Regularly assess whether your daily choices reflect what matters most to you.<br><br>" +
+                "<strong>3. Practice Self-Compassion:</strong> Approach self-discovery with kindness, recognizing growth comes through gentle awareness rather than harsh judgment.<br><br>" +
+                "By developing greater self-awareness, your spiritual connection can become more integrated into your everyday life.";
+            } else if (avgScore < 2.5) {
+                pathDescription = "You're at the beginning of a meaningful journey of spiritual growth and self-discovery. Consider these paths forward:<br><br>" +
+                "<strong>1. Start Small:</strong> Begin with just 5 minutes daily of a practice that interests you - perhaps mindfulness, prayer, or reflection.<br><br>" +
+                "<strong>2. Read Widely:</strong> Explore different spiritual traditions and philosophies without pressure to commit to any particular path.<br><br>" +
+                "<strong>3. Find a Guide:</strong> Consider connecting with a spiritual mentor or counselor who can support your exploration.<br><br>" +
+                "<strong>4. Practice Gratitude:</strong> A simple gratitude practice can open the door to deeper spiritual awareness.<br><br>" +
+                "Remember that every spiritual journey begins with simple curiosity and openness.";
+            } else if (avgScore < 4) {
+                pathDescription = "You have a solid foundation in both self-awareness and spiritual connection. To continue growing, consider these paths forward:<br><br>" +
+                "<strong>1. Deepen Your Practice:</strong> Consider extending your current spiritual practices or exploring complementary ones.<br><br>" +
+                "<strong>2. Integrate Spirituality:</strong> Look for ways to bring spiritual awareness into everyday activities, from cooking to working.<br><br>" +
+                "<strong>3. Learn From Challenges:</strong> View difficulties as opportunities for spiritual growth rather than obstacles.<br><br>" +
+                "<strong>4. Share With Others:</strong> Consider ways to compassionately share your insights with others who might benefit.<br><br>" +
+                "Your balanced approach positions you well for continued meaningful growth.";
+            } else {
+                pathDescription = "Your responses reflect exceptional integration of spiritual connection and self-awareness. Consider these paths to continue your journey:<br><br>" +
+                "<strong>1. Mentorship:</strong> You have much wisdom to offer others - consider how you might compassionately guide those earlier in their journey.<br><br>" +
+                "<strong>2. Advanced Practice:</strong> Explore deeper contemplative practices that build on your strong foundation.<br><br>" +
+                "<strong>3. Community Leadership:</strong> Consider ways to nurture spiritual community that aligns with your values.<br><br>" +
+                "<strong>4. Creative Expression:</strong> Explore artistic or creative ways to express your spiritual insights.<br><br>" +
+                "Your spiritual maturity is a gift - both to yourself and potentially to others around you.";
+            }
+            document.getElementById('path-description').innerHTML = pathDescription;
+        };
+        
+        // Function to start over
+        function startOver() {
+            window.location.href = 'welcome.html';
+        }
+    </script>
+</body>
+</html>
