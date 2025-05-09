@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SoulScape Store</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Garamond', serif;
+      background-color: #3e3e3e;
+      color: #f1e8dc;
+      display: flex;
+    }
+    .store-container {
+      flex: 3;
+      padding: 40px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 48px;
+      margin-bottom: 40px;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    .product {
+      background-color: #555;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .product img {
+      max-width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .product h2 {
+      font-size: 22px;
+      margin: 10px 0;
+    }
+    .product p {
+      font-size: 18px;
+      margin: 5px 0 15px;
+    }
+    .add-to-cart {
+      padding: 10px 25px;
+      font-size: 16px;
+      background-color: #a45ee5;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .add-to-cart:hover {
+      background-color: #d2aaff;
+      color: #222;
+    }
+    .cart {
+      flex: 1;
+      background-color: #1e1e1e;
+      color: white;
+      padding: 30px 20px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
+    .cart h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    .cart-items {
+      margin-bottom: 20px;
+    }
+    .cart-item {
+      margin-bottom: 10px;
+    }
+    .checkout-btn {
+      width: 100%;
+      padding: 12px;
+      font-size: 18px;
+      background-color: #5cb85c;
+      border: none;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .checkout-btn:hover {
+      background-color: #4cae4c;
+    }
+  </style>
+</head>
+<body>
+  <div class="store-container">
+    <h1>SoulScape Store</h1>
+    <div class="products">
+      <!-- 10 Products with image links -->
+      <div class="product">
+        <img src="candles.png" alt="Aromatic Candle"/>
+        <h2>Aromatic Candle</h2>
+        <p>₹499</p>
+        <button class="add-to-cart" data-name="Aromatic Candle" data-price="499">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="healing_crystal.png" alt="Healing Crystal"/>
+        <h2>Healing Crystal</h2>
+        <p>₹799</p>
+        <button class="add-to-cart" data-name="Healing Crystal" data-price="799">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="spiritual_journal.png" alt="Spiritual Journal"/>
+        <h2>Spiritual Journal</h2>
+        <p>₹299</p>
+        <button class="add-to-cart" data-name="Spiritual Journal" data-price="299">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="incense_sticks.png" alt="Incense Sticks"/>
+        <h2>Incense Sticks</h2>
+        <p>₹199</p>
+        <button class="add-to-cart" data-name="Incense Sticks" data-price="199">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="meditation_mat.png" alt="Meditation Mat"/>
+        <h2>Meditation Mat</h2>
+        <p>₹999</p>
+        <button class="add-to-cart" data-name="Meditation Mat" data-price="999">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="essential_oils.png" alt="Essential Oil Set"/>
+        <h2>Essential Oil Set</h2>
+        <p>₹899</p>
+        <button class="add-to-cart" data-name="Essential Oil Set" data-price="899">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="singing_bowl.png" alt="Singing Bowl"/>
+        <h2>Singing Bowl</h2>
+        <p>₹1299</p>
+        <button class="add-to-cart" data-name="Singing Bowl" data-price="1299">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="affirmation_cards.png" alt="Affirmation Cards"/>
+        <h2>Affirmation Cards</h2>
+        <p>₹399</p>
+        <button class="add-to-cart" data-name="Affirmation Cards" data-price="399">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="dreamcatcher.png" alt="Dreamcatcher"/>
+        <h2>Dreamcatcher</h2>
+        <p>₹349</p>
+        <button class="add-to-cart" data-name="Dreamcatcher" data-price="349">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="chakra_bracelet.png" alt="Chakra Bracelet"/>
+        <h2>Chakra Bracelet</h2>
+        <p>₹599</p>
+        <button class="add-to-cart" data-name="Chakra Bracelet" data-price="599">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+  <div class="cart">
+    <h2>Your Cart</h2>
+    <div class="cart-items"></div>
+    <p>Total: ₹<span id="total">0</span></p>
+    <button class="checkout-btn">Checkout</button>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll(".add-to-cart");
+    const cartItems = document.querySelector(".cart-items");
+    const totalDisplay = document.getElementById("total");
+    let total = 0;
+    let cart = [];  // Store cart items
+
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            const name = button.getAttribute("data-name");
+            const price = parseInt(button.getAttribute("data-price"));
+
+            // Add item to cart array
+            cart.push({ name, price });
+
+            // Display item in the cart
+            const item = document.createElement("div");
+            item.className = "cart-item";
+            item.textContent = `${name} - ₹${price}`;
+            cartItems.appendChild(item);
+
+            // Update total
+            total += price;
+            totalDisplay.textContent = total;
+        });
+    });
+
+    // Checkout function
+    function checkout() {
+        if (cart.length === 0) {
+            alert("Your cart is empty.");
+            return;
+        }
+
+        // You can also redirect to a "thank you" page instead of this alert
+        alert("Thank you for your purchase!");
+
+        // Reset cart data
+        cart = [];
+
+        // Update UI
+        cartItems.innerHTML = "";  // Clear cart items
+        total = 0;  // Reset total
+        totalDisplay.textContent = total;  // Update displayed total
+    }
+
+    // Add event listener to the checkout button
+    const checkoutButton = document.querySelector(".checkout-btn");
+    checkoutButton.addEventListener("click", checkout);
+
+  </script>
+</body>
+</html>
