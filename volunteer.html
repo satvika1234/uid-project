@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer & Seva Activities | SoulScape</title>
+    <style>
+        body {
+            font-family: Garamond, serif;
+            line-height: 1.6;
+            color: #e6f7ff;
+            background: #1a1a2e;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 2.5rem;
+            background-color: #16213e;
+            box-shadow: 0 10px 30px rgba(22, 33, 62, 0.2);
+            border-radius: 18px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #e6f7ff;
+            padding-bottom: 1rem;
+        }
+        h1 {
+            color: #fca510;
+            font-size: 2.6rem;
+            margin-bottom: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .subtitle {
+            font-size: 1.15rem;
+            color: #e6f7ff;
+            margin-bottom: 1.7rem;
+            text-align: center;
+            font-style: italic;
+        }
+        .highlight {
+            color: #fca510;
+            font-weight: bold;
+        }
+        .info-section {
+            background: #1a1a2e;
+            padding: 1.2rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2.2rem;
+            border-left: 5px solid #fca510;
+            box-shadow: 0 4px 10px rgba(22, 33, 62, 0.07);
+        }
+        .info-section h2 {
+            color: #fca510;
+            font-size: 1.3rem;
+            margin-bottom: 0.7rem;
+            font-weight: 600;
+        }
+        .activity-list {
+            margin: 0.8rem 0 0 0.5rem;
+            padding: 0;
+        }
+        .activity-list li {
+            margin-bottom: 0.7rem;
+            padding-left: 0.5rem;
+            font-size: 1.08rem;
+        }
+        .activity-list li::marker {
+            color: #fca510;
+            font-size: 1.1rem;
+        }
+        form {
+            background: #1a1a2e;
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 8px 24px rgba(252, 165, 16, 0.07);
+            margin-top: 1.4rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #e6f7ff;
+            font-size: 1.05rem;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 0.7rem;
+            margin-bottom: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            font-family: Garamond, serif;
+            font-size: 1.06rem;
+            background: #e6f7ff;
+            color: #16213e;
+        }
+        input[type="checkbox"] {
+            width: auto;
+            margin-right: 0.5rem;
+        }
+        .checkbox-group {
+            margin-bottom: 1.2rem;
+        }
+        .checkbox-group label {
+            display: inline-block;
+            margin-right: 1.5rem;
+            color: #fca510;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+        button {
+            background: linear-gradient(135deg, #fca510 0%, #e6f7ff 100%);
+            color: #16213e;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 1.5rem auto 0;
+            width: 220px;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        button:hover {
+            background: linear-gradient(135deg, #fca510 0%, #1a1a2e 100%);
+            color: #e6f7ff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(252, 165, 16, 0.16);
+        }
+        .thankyou-message {
+            color: #fca510;
+            background: #e6f7ff;
+            padding: 1.2rem;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            font-weight: bold;
+            display: none;
+        }
+        header::after {
+            content: "☸";
+            display: block;
+            text-align: center;
+            font-size: 2rem;
+            color: #fca510;
+            margin-top: 1rem;
+            opacity: 0.7;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 1rem;
+            }
+            form { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Volunteer with SoulScape</h1>
+            <div class="subtitle">
+                Join our vibrant community across India and spread light through <span class="highlight">seva</span> (selfless service)!
+            </div>
+        </header>
+
+        <div class="info-section">
+            <h2>Why Volunteer?</h2>
+            <p>
+                At <span class="highlight">SoulScape</span>, we believe that true growth comes from giving back. Seva is not just an activity—it's a path to self-realization and joy. Whether you want to help people, the environment, or simply wish to connect with like-minded souls, your time and energy can create ripples of positive change!
+            </p>
+        </div>
+
+        <div class="info-section">
+            <h2>Our Seva Opportunities</h2>
+            <ul class="activity-list">
+                <li><b>Community Meals:</b> Cook and serve food to those in need across Bangalore.</li>
+                <li><b>Mindfulness Outreach:</b> Facilitate meditation and well-being sessions in schools and old age homes.</li>
+                <li><b>Eco Initiatives:</b> Join tree-planting drives, clean-ups, and sustainable living workshops.</li>
+                <li><b>Art & Expression:</b> Support creative workshops for underprivileged children.</li>
+                <li><b>Event Support:</b> Help us organize SoulScape’s spiritual events and festivals.</li>
+                <li><b>Open Your Heart:</b> Propose your own seva idea!</li>
+            </ul>
+        </div>
+
+        <form id="volunteer-form">
+            <h2 style="color:#fca510; text-align:center; margin-bottom:1rem;">Sign Up to Volunteer</h2>
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your Name">
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="you@example.com">
+
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" value="Bangalore" required>
+
+            <div class="checkbox-group">
+                <label>Select Your Areas of Interest:</label><br>
+                <label><input type="checkbox" name="activity" value="Community Meals"> Community Meals</label>
+                <label><input type="checkbox" name="activity" value="Mindfulness Outreach"> Mindfulness Outreach</label>
+                <label><input type="checkbox" name="activity" value="Eco Initiatives"> Eco Initiatives</label>
+                <label><input type="checkbox" name="activity" value="Art & Expression"> Art & Expression</label>
+                <label><input type="checkbox" name="activity" value="Event Support"> Event Support</label>
+                <label><input type="checkbox" name="activity" value="Other"> Other</label>
+            </div>
+
+            <label for="message">Tell us why seva matters to you (optional)</label>
+            <textarea id="message" name="message" rows="3" placeholder="Share your thoughts..."></textarea>
+
+            <button type="submit">Join as Volunteer</button>
+        </form>
+        <div class="thankyou-message" id="thankyou-msg">
+            Thank you for signing up for seva with SoulScape!<br>
+            We are grateful for your heart of service.<br>
+            Our team will connect with you soon.
+        </div>
+    </div>
+    <script>
+        document.getElementById('volunteer-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('volunteer-form').style.display = 'none';
+            document.getElementById('thankyou-msg').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
