@@ -84,7 +84,7 @@
     }
     .feature-row {
       display: flex;
-      align-items: center;
+      align-items: stretch;
       gap: 50px;
       margin-bottom: 12px;
       flex-wrap: wrap;
@@ -115,7 +115,7 @@
       display: block;
     }
     .feature-description {
-      flex: 2 1 400px;
+      flex: 1 1 520px;
       color: #e6f7ff;
       font-size: 1.18rem;
       background: #1a1a2e;
@@ -123,6 +123,12 @@
       padding: 18px 36px;
       text-align: left;
       min-width: 320px;
+      min-height: 370px;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-sizing: border-box;
     }
     .section-title {
       color: #fca510;
@@ -130,18 +136,24 @@
       margin-bottom: 12px;
       font-weight: 700;
       letter-spacing: 1px;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .section-title:hover {
+      text-decoration: underline;
+      color: #e6f7ff;
     }
     @media (max-width: 1200px) {
       .main-section { max-width: 99vw; }
       .feature-row, .feature-row.reverse { flex-direction: column; gap: 30px; }
-      .feature-description { padding: 14px 10px; min-width: 0; }
-      .feature-image { width: 100%; max-width: 100%; height: 280px; min-height: 200px;}
+      .feature-description { padding: 14px 10px; min-width: 0; min-height: 220px; height: auto;}
+      .feature-image { width: 100%; max-width: 100%; height: 220px; min-height: 120px;}
     }
     @media (max-width: 700px) {
       .main-section { border-radius: 0; margin: 0; padding: 7vw 0; }
       .feature-row, .feature-row.reverse { gap: 18px; }
       .feature-description { font-size: 1rem; }
-      .feature-image { height: 160px; min-height: 100px; }
+      .feature-image { height: 110px; min-height: 80px; }
     }
   </style>
 </head>
@@ -172,7 +184,7 @@
           <img src="retreat.jpg" alt="Book a Spiritual Retreat"/>
         </div>
         <div class="feature-description">
-          <div class="section-title">Book Retreat</div>
+          <a class="section-title" href="bookretreat.html">Book Retreat</a>
           <p>
             Embark on a transformative retreat at sacred destinations across India. Our interactive map lets you explore and book spiritual experiences in places like Rishikesh, Varanasi, Auroville, and Coimbatore. Click on a lotus to discover details and plan your soulful getaway!
           </p>
@@ -185,7 +197,7 @@
           <img src="selfreflect.jpg" alt="Self Reflection"/>
         </div>
         <div class="feature-description">
-          <div class="section-title">Self Reflect</div>
+          <a class="section-title" href="selfreflect.html">Self Reflect</a>
           <p>
             Journey inward with our guided self-reflection tool. Answer thoughtful questions to gain insights into your spiritual connection, self-awareness, and areas for growth. Receive a personalized summary to illuminate your unique path.
           </p>
@@ -198,7 +210,7 @@
           <img src="library.jpg" alt="Soul Library"/>
         </div>
         <div class="feature-description">
-          <div class="section-title">Soul Library</div>
+          <a class="section-title" href="soulLibrary.html">Soul Library</a>
           <p>
             Discover a curated collection of spiritual wisdom, practices, and resources. The Soul Library features guides on meditation, yoga, chakras, energy work, indigenous wisdom, and more. Search, browse, and deepen your spiritual knowledge at your own pace.
           </p>
@@ -211,7 +223,7 @@
           <img src="store.jpg" alt="SoulScape Store"/>
         </div>
         <div class="feature-description">
-          <div class="section-title">Store</div>
+          <a class="section-title" href="store.html">Store</a>
           <p>
             Shop soulful essentials! Find aromatic candles, healing crystals, spiritual journals, meditation mats, incense, affirmation cards, and more. Our curated store brings you tools to enhance your spiritual journey and well-being.
           </p>
@@ -224,7 +236,7 @@
           <img src="volunteer.jpg" alt="Volunteer & Seva"/>
         </div>
         <div class="feature-description">
-          <div class="section-title">Volunteer</div>
+          <a class="section-title" href="volunteer.html">Volunteer</a>
           <p>
             Give back through seva (selfless service) with SoulScape. Join community meals, mindfulness outreach, eco-initiatives, art for children, event support, and more. Sign up to spread light and compassion in Bangalore and beyond.
           </p>
@@ -237,7 +249,7 @@
           <img src="review.jpg" alt="Reviews"/>
         </div>
         <div class="feature-description">
-          <div class="section-title">Review</div>
+          <a class="section-title" href="review.html">Review</a>
           <p>
             Share your SoulScape experience! Read heartfelt testimonials from our community and let your voice inspire others. Whether it’s a retreat, a resource, or a product, your feedback helps us grow together.
           </p>
@@ -250,7 +262,7 @@
           <img src="founder.jpg" alt="Founder"/>
         </div>
         <div class="feature-description">
-          <div class="section-title">Founder</div>
+          <a class="section-title" href="founder.html">Founder</a>
           <p>
             Meet the heart behind SoulScape. Learn about our founder’s vision, journey, and commitment to fostering a soulful, connected community in Bangalore and beyond.
           </p>
