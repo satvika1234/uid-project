@@ -7,12 +7,23 @@
     <style>
         /* Soul Library Specific Styles */
         :root {
-            --primary-color: #7e57c2;
-            --secondary-color: #b39ddb;
-            --text-color: #333;
-            --light-bg: #f5f0ff;
-            --accent-color: #4a148c;
-            --white: #ffffff;
+           --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --text-color: #e6f7ff;
+            --light-bg: #16213e;
+            --accent-color: #fca510;
+            --white: #e6f7ff;
+            --dark-bg: #0f1419;
+            --card-bg: #1e2a47;
+
+        }
+body {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
         }
 
         .library-container {
@@ -37,6 +48,7 @@
             margin: 0 auto;
             font-size: 1.1rem;
             line-height: 1.6;
+ color: var(--text-color);
         }
 
         .search-container {
@@ -60,8 +72,9 @@
         }
 
         .search-box button {
-            background-color: var(--primary-color);
-            color: var(--white);
+             background-color: var(--accent-color);
+            color: var(--primary-color);
+
             border: none;
             padding: 0 1.5rem;
             font-size: 1rem;
@@ -70,7 +83,9 @@
         }
 
         .search-box button:hover {
-            background-color: var(--accent-color);
+           background-color: #e89409;
+            transform: scale(1.05);
+
         }
 
         .library-categories {
@@ -82,9 +97,10 @@
         }
 
         .category-btn {
-            background-color: var(--white);
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
+            background-color: transparent;
+            color: var(--text-color);
+            border: 2px solid var(--secondary-color);
+
             padding: 0.5rem 1.2rem;
             border-radius: 20px;
             font-size: 0.95rem;
@@ -94,8 +110,9 @@
 
         .category-btn:hover,
         .category-btn.active {
-            background-color: var(--primary-color);
-            color: var(--white);
+           background-color: var(--accent-color);
+            color: var(--primary-color);
+            border-color: var(--accent-color);
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
@@ -108,7 +125,8 @@
         }
 
         .resource-card {
-            background-color: var(--white);
+           background-color: var(--card-bg);
+
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -121,15 +139,18 @@
         .resource-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+border-color: var(--accent-color);
+
         }
 
         .card-image {
             height: 160px;
-            background-color: var(--secondary-color);
+            background: linear-gradient(135deg, var(--secondary-color), var(--light-bg));
+
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--white);
+             color: var(--accent-color);
             font-size: 3rem;
         }
 
@@ -143,13 +164,14 @@
         .card-content h3 {
             font-size: 1.3rem;
             margin-bottom: 0.8rem;
-            color: var(--primary-color);
+            color: var(--accent-color);
         }
 
         .card-content p {
             margin-bottom: 1.2rem;
             flex-grow: 1;
             line-height: 1.6;
+color: var(--text-color);
         }
 
         .card-link {
@@ -162,11 +184,12 @@
         }
 
         .card-link:hover {
-            color: var(--primary-color);
+              color: #e89409;
+            transform: translateX(5px);
         }
 
         .library-featured {
-            background-color: var(--light-bg);
+            background: linear-gradient(135deg, var(--secondary-color), var(--light-bg));
             padding: 3rem 0;
             margin: 3rem 0;
         }
@@ -195,7 +218,8 @@
         }
 
         .featured-item {
-            background-color: var(--white);
+           background-color: var(--card-bg);
+
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -207,15 +231,18 @@
         .featured-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+border-color: var(--accent-color);
+
         }
 
         .featured-image {
             height: 180px;
-            background-color: var(--secondary-color);
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--white);
+             color: var(--accent-color);
+
             font-size: 3rem;
         }
 
@@ -224,7 +251,7 @@
         }
 
         .featured-details h3 {
-            color: var(--primary-color);
+            color: var(--accent-color);
             margin-bottom: 0.8rem;
             font-size: 1.3rem;
         }
@@ -232,6 +259,8 @@
         .featured-details p {
             margin-bottom: 1.2rem;
             line-height: 1.6;
+color: var(--text-color);
+            opacity: 0.9;
         }
 
         /* Modal styles */
@@ -243,20 +272,23 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(26, 26, 46, 0.9);
             overflow: auto;
+            backdrop-filter: blur(5px);
+
         }
 
         .modal-content {
-            background-color: var(--white);
+            background-color: var(--card-bg);
             margin: 5% auto;
             padding: 2rem;
             width: 90%;
             max-width: 800px;
             border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
             position: relative;
             animation: modalopen 0.4s;
+border: 1px solid rgba(252, 165, 16, 0.2);
         }
 
         @keyframes modalopen {
@@ -280,7 +312,8 @@
         }
 
         .modal-title {
-            color: var(--primary-color);
+             color: var(--accent-color);
+
             margin-bottom: 1.5rem;
             font-size: 1.8rem;
         }
@@ -294,6 +327,8 @@
         .modal-body p {
             margin-bottom: 1rem;
             line-height: 1.6;
+color: var(--text-color);
+            opacity: 0.9;
         }
 
         .modal-body ul {
@@ -304,6 +339,8 @@
         .modal-body li {
             margin-bottom: 0.5rem;
             line-height: 1.5;
+color: var(--text-color);
+            opacity: 0.9;
         }
 
         /* Responsive design */
@@ -336,9 +373,68 @@
                 padding: 0.8rem;
             }
         }
+ .ribbon {
+    background: linear-gradient(90deg, #fca510 0%, #16213e 100%);
+    color: #e6f7ff;
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
+    height: 64px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 12px rgba(22,33,62,0.15);
+  }
+  .ribbon-logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    color: #16213e;
+    background: #fca510;
+    border-radius: 10px;
+    padding: 8px 18px;
+    margin-right: 32px;
+  }
+  .ribbon-nav {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+  }
+  .ribbon-nav a {
+    color: #e6f7ff;
+    text-decoration: none;
+    font-size: 1.07rem;
+    font-weight: 600;
+    padding: 6px 18px;
+    border-radius: 20px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .ribbon-nav a:hover,
+  .ribbon-nav a.active {
+    background: #e6f7ff;
+    color: #16213e;
+  }
+  @media (max-width: 700px) {
+    .ribbon { flex-direction: column; height: auto; padding: 8px 0; }
+    .ribbon-logo { margin: 0 0 8px 0; }
+    .ribbon-nav { flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .ribbon-nav a { padding: 6px 10px; font-size: 1rem; }
+  }
     </style>
 </head>
 <body>
+<div class="ribbon">
+  <span class="ribbon-logo">SoulScape</span>
+  <nav class="ribbon-nav">
+    <a href="bookretreat.html">Book Retreat</a>
+    <a href="selfreflect.html">Self Reflect</a>
+    <a href="soulLibrary.html">Soul Library</a>
+    <a href="store.html">Store</a>
+    <a href="volunteer.html">Volunteer</a>
+    <a href="review.html">Review</a>
+    <a href="founder.html">Founder</a>
+  </nav>
+</div>
     <!-- Soul Library Section -->
     <div class="library-container">
         <div class="library-header">
@@ -355,44 +451,20 @@
 
         <div class="library-categories">
             <button class="category-btn active" data-category="all">All Resources</button>
-            <button class="category-btn" data-category="spirituality">Spirituality Types</button>
+            
             <button class="category-btn" data-category="yoga">Yoga Asanas</button>
             <button class="category-btn" data-category="chakras">Chakras</button>
             <button class="category-btn" data-category="crystals">Crystal Healing</button>
             <button class="category-btn" data-category="meditation">Meditation</button>
-            <button class="category-btn" data-category="energy">Energy Work</button>
+           
         </div>
 
         <div class="resources-grid" id="resourcesGrid">
-            <!-- Spirituality Types -->
-            <div class="resource-card" data-category="spirituality">
-                <div class="card-image">🌍</div>
-                <div class="card-content">
-                    <h3>Eastern Spirituality</h3>
-                    <p>Explore traditions like Buddhism, Hinduism, Taoism, and their paths to enlightenment.</p>
-                    <a href="#" class="card-link" data-modal="easternSpirituality">Read More →</a>
-                </div>
-            </div>
-            <div class="resource-card" data-category="spirituality">
-                <div class="card-image">✝️</div>
-                <div class="card-content">
-                    <h3>Western Mysticism</h3>
-                    <p>Discover Christian mysticism, Kabbalah, Gnosticism, and Western esoteric paths.</p>
-                    <a href="#" class="card-link" data-modal="westernMysticism">Read More →</a>
-                </div>
-            </div>
-            <div class="resource-card" data-category="spirituality">
-                <div class="card-image">🌿</div>
-                <div class="card-content">
-                    <h3>Indigenous Wisdom</h3>
-                    <p>Learn about shamanism, Native American spirituality, and indigenous practices.</p>
-                    <a href="#" class="card-link" data-modal="indigenousWisdom">Read More →</a>
-                </div>
-            </div>
+            
 
             <!-- Yoga Asanas -->
             <div class="resource-card" data-category="yoga">
-                <div class="card-image">🧘‍♀️</div>
+                <div class="card-image"><img src="C:\Users\Sathvika\Desktop\yoga-.jpg" alt="Foundation Asanas" style="width:100%; height:auto;"></div>
                 <div class="card-content">
                     <h3>Foundation Asanas</h3>
                     <p>Essential yoga poses for beginners to build strength, flexibility and spiritual awareness.</p>
@@ -400,7 +472,7 @@
                 </div>
             </div>
             <div class="resource-card" data-category="yoga">
-                <div class="card-image">🧘‍♂️</div>
+                <div class="card-image"><img src="C:\Users\Sathvika\Desktop\chakras.jpg" alt="Balancing chakra Asanas" style="width:100%; height:auto;"></div>
                 <div class="card-content">
                     <h3>Chakra Balancing Yoga</h3>
                     <p>Specific asanas designed to activate and harmonize each energy center.</p>
@@ -408,7 +480,7 @@
                 </div>
             </div>
             <div class="resource-card" data-category="yoga">
-                <div class="card-image">🌅</div>
+                <div class="card-image"><img src="C:\Users\Sathvika\Desktop\Kundalini.webp" alt="Kundalini Yoga" style="width:100%; height:auto;"></div>
                 <div class="card-content">
                     <h3>Kundalini Yoga</h3>
                     <p>Powerful practices to awaken spiritual energy and expand consciousness.</p>
@@ -418,7 +490,7 @@
 
             <!-- Chakras -->
             <div class="resource-card" data-category="chakras">
-                <div class="card-image">🔴</div>
+                <div class="card-image"><img src="C:\Users\Sathvika\Desktop\root.jpg" alt="Root Chakras" style="width:100%; height:auto;"></div>
                 <div class="card-content">
                     <h3>Root Chakra (Muladhara)</h3>
                     <p>The foundation chakra that grounds you and provides security and stability.</p>
@@ -426,7 +498,7 @@
                 </div>
             </div>
             <div class="resource-card" data-category="chakras">
-                <div class="card-image">🧡</div>
+                <div class="card-image"><img src="C:\Users\Sathvika\Desktop\SacralChakra.jpg" alt="Sacral Chakra" style="width:100%; height:auto;"></div>
                 <div class="card-content">
                     <h3>Sacral Chakra (Svadhisthana)</h3>
                     <p>The center of creativity, passion, and emotional balance in your energy system.</p>
@@ -434,7 +506,7 @@
                 </div>
             </div>
             <div class="resource-card" data-category="chakras">
-                <div class="card-image">💛</div>
+                <div class="card-image"><img src="C:\Users\Sathvika\Desktop\Solar-Plexus.jpg" alt="Solar Plexus Chakra" style="width:100%; height:auto;"></div>
                 <div class="card-content">
                     <h3>Solar Plexus Chakra (Manipura)</h3>
                     <p>Your power center for confidence, self-esteem, and personal willpower.</p>
@@ -442,7 +514,7 @@
                 </div>
             </div>
             <div class="resource-card" data-category="chakras">
-                <div class="card-image">💚</div>
+                <div class="card-image"><img src="C:\Users\Sathvika\Desktop\heart.jpg" alt="Heart chakra " style="width:100%; height:auto;"></div>
                 <div class="card-content">
                     <h3>Heart Chakra (Anahata)</h3>
                     <p>The center of love, compassion, and connection with yourself and others.</p>
@@ -450,7 +522,7 @@
                 </div>
             </div>
             <div class="resource-card" data-category="chakras">
-                <div class="card-image">💙</div>
+                <div class="card-image"><img src="C:\Users\Sathvika\Desktop\throat.jpg" alt="Throat Chakra" style="width:100%; height:auto;"></div>
                 <div class="card-content">
                     <h3>Throat Chakra (Vishuddha)</h3>
                     <p>Your center of expression, communication, and speaking your truth.</p>
@@ -458,7 +530,7 @@
                 </div>
             </div>
             <div class="resource-card" data-category="chakras">
-                <div class="card-image">💜</div>
+                <div class="card-image"><img src="C:\Users\Sathvika\Desktop\third-eye.jpg" alt="Third Eye Chakra" style="width:100%; height:auto;"></div>
                 <div class="card-content">
                     <h3>Third Eye Chakra (Ajna)</h3>
                     <p>The seat of intuition, inner wisdom, and psychic perception.</p>
@@ -466,7 +538,7 @@
                 </div>
             </div>
             <div class="resource-card" data-category="chakras">
-                <div class="card-image">👑</div>
+                <div class="card-image"><img src="C:\Users\Sathvika\Desktop\images.jpg" alt="Crown Chakra " style="width:100%; height:auto;"></div>
                 <div class="card-content">
                     <h3>Crown Chakra (Sahasrara)</h3>
                     <p>Your connection to divine consciousness and spiritual enlightenment.</p>
@@ -476,7 +548,7 @@
 
             <!-- Crystals -->
             <div class="resource-card" data-category="crystals">
-                <div class="card-image">💎</div>
+                <div class="card-image"><img src="C:\Users\Sathvika\Desktop\crystals2.jpg" alt="Crystal Basics " style="width:100%; height:auto;"></div>
                 <div class="card-content">
                     <h3>Crystal Basics</h3>
                     <p>An introduction to crystal energy and how to select, cleanse, and program your stones.</p>
@@ -484,25 +556,18 @@
                 </div>
             </div>
             <div class="resource-card" data-category="crystals">
-                <div class="card-image">🔮</div>
+                <div class="card-image"><img src="C:\Users\Sathvika\Desktop\crystalguide.jpg" alt="Chakra Crystal Guide " style="width:100%; height:auto;"></div>
                 <div class="card-content">
                     <h3>Chakra Crystal Guide</h3>
                     <p>Discover which crystals resonate with each chakra to enhance energy flow and healing.</p>
                     <a href="#" class="card-link" data-modal="chakraCrystals">Read More →</a>
                 </div>
             </div>
-            <div class="resource-card" data-category="crystals">
-                <div class="card-image">✨</div>
-                <div class="card-content">
-                    <h3>Crystal Grids</h3>
-                    <p>Create powerful crystal layouts for manifestation, protection, and spiritual growth.</p>
-                    <a href="#" class="card-link" data-modal="crystalGrids">Read More →</a>
-                </div>
-            </div>
+            
 
             <!-- Meditation -->
             <div class="resource-card" data-category="meditation">
-                <div class="card-image">🧠</div>
+                <div class="card-image"><img src="C:\Users\Sathvika\Desktop\meditating.webp" alt="Mindfulness Meditation " style="width:100%; height:auto;"></div>
                 <div class="card-content">
                     <h3>Mindfulness Meditation</h3>
                     <p>Cultivate present moment awareness with simple yet profound mindfulness practices.</p>
@@ -510,7 +575,7 @@
                 </div>
             </div>
             <div class="resource-card" data-category="meditation">
-                <div class="card-image">🎵</div>
+                <div class="card-image"><img src="C:\Users\Sathvika\Desktop\sound.jpg" alt="Sound Healing " style="width:100%; height:auto;"></div>
                 <div class="card-content">
                     <h3>Sound Healing</h3>
                     <p>Experience the therapeutic power of sound through singing bowls, mantras, and frequencies.</p>
@@ -518,7 +583,7 @@
                 </div>
             </div>
             <div class="resource-card" data-category="meditation">
-                <div class="card-image">🔆</div>
+                <div class="card-image"><img src="C:\Users\Sathvika\Desktop\visualization.jpg" alt="Guided Visualization " style="width:100%; height:auto;"></div>
                 <div class="card-content">
                     <h3>Guided Visualization</h3>
                     <p>Journey within through powerful guided imagery for healing and transformation.</p>
@@ -526,32 +591,7 @@
                 </div>
             </div>
 
-            <!-- Energy Work -->
-            <div class="resource-card" data-category="energy">
-                <div class="card-image">👐</div>
-                <div class="card-content">
-                    <h3>Reiki Healing</h3>
-                    <p>Learn about this Japanese energy healing technique and its principles for well-being.</p>
-                    <a href="#" class="card-link" data-modal="reikiHealing">Read More →</a>
-                </div>
-            </div>
-            <div class="resource-card" data-category="energy">
-                <div class="card-image">🌀</div>
-                <div class="card-content">
-                    <h3>Pranic Healing</h3>
-                    <p>Work with life force energy (prana) to cleanse and revitalize your energetic body.</p>
-                    <a href="#" class="card-link" data-modal="pranicHealing">Read More →</a>
-                </div>
-            </div>
-            <div class="resource-card" data-category="energy">
-                <div class="card-image">🧿</div>
-                <div class="card-content">
-                    <h3>Aura Cleansing</h3>
-                    <p>Techniques to purify and strengthen your energetic field for protection and vitality.</p>
-                    <a href="#" class="card-link" data-modal="auraCleansing">Read More →</a>
-                </div>
-            </div>
-        </div>
+            
     </div>
 
     <div class="library-featured">
@@ -561,7 +601,7 @@
             </div>
             <div class="featured-items">
                 <div class="featured-item">
-                    <div class="featured-image">🧘</div>
+                    <div class="featured-image"><img src="C:\Users\Sathvika\Desktop\mindmeditaion.jpg" alt="Complete Meditation Guide " style="width:100%; height:auto;"></div>
                     <div class="featured-details">
                         <h3>Complete Meditation Guide</h3>
                         <p>A comprehensive journey from beginner meditation techniques to advanced spiritual practices.</p>
@@ -569,7 +609,7 @@
                     </div>
                 </div>
                 <div class="featured-item">
-                    <div class="featured-image">🔮</div>
+                    <div class="featured-image"><img src="C:\Users\Sathvika\Desktop\ChakraMeditationBanner.webp" alt="Chakra Balancing System " style="width:100%; height:auto;"></div>
                     <div class="featured-details">
                         <h3>Chakra Balancing System</h3>
                         <p>An integrated approach to harmonizing your energy centers using multiple modalities.</p>
@@ -577,7 +617,7 @@
                     </div>
                 </div>
                 <div class="featured-item">
-                    <div class="featured-image">🌿</div>
+                    <div class="featured-image"><img src="C:\Users\Sathvika\Desktop\nature.jpg" alt="Nature Connection Practices" style="width:100%; height:auto;"></div>
                     <div class="featured-details">
                         <h3>Nature Connection Practices</h3>
                         <p>Ancient and modern techniques for deepening your spiritual relationship with the natural world.</p>
@@ -689,6 +729,7 @@
             });
             
             function openModal(modalType) {
+
                 // Sample modal content - in a real implementation, this would be loaded from a database
                 const modalContent = getModalContent(modalType);
                 
@@ -698,6 +739,7 @@
             }
             
             function getModalContent(modalType) {
+
                 // This is sample content - in a real implementation, you'd fetch this from your database
                 const contentLibrary = {
                     rootChakra: {
@@ -838,47 +880,7 @@
                             <p>Regular chakra maintenance creates a foundation for spiritual growth, emotional wellbeing, and physical health.</p>
                         `
                     },
-                    easternSpirituality: {
-                        title: "Eastern Spirituality",
-                        content: `
-                            <p>Eastern spiritual traditions offer profound paths to enlightenment, self-realization, and inner peace. These ancient wisdom traditions have much to offer the modern seeker.</p>
-                            
-                            <h3>Buddhism</h3>
-                            <p>Founded by Siddhartha Gautama (the Buddha) in the 5th century BCE, Buddhism focuses on understanding the nature of suffering and finding liberation through the Eightfold Path. Key concepts include:</p>
-                            <ul>
-                                <li>The Four Noble Truths</li>
-                                <li>Meditation and mindfulness practices</li>
-                                <li>Concepts of impermanence and non-self</li>
-                                <li>Compassion for all beings</li>
-                            </ul>
-                            
-                            <h3>Hinduism</h3>
-                            <p>As one of the world's oldest religions, Hinduism encompasses a vast array of beliefs, practices, and philosophical schools. Central elements include:</p>
-                            <ul>
-                                <li>Concepts of dharma (duty/righteousness), karma, and reincarnation</li>
-                                <li>Various yogic paths: Jnana (knowledge), Bhakti (devotion), Karma (action), Raja (meditation)</li>
-                                <li>The understanding of Brahman (ultimate reality) and Atman (individual soul)</li>
-                                <li>Sacred texts like the Vedas, Upanishads, and Bhagavad Gita</li>
-                            </ul>
-                            
-                            <h3>Taoism</h3>
-                            <p>Originating in China through the teachings of Lao Tzu, Taoism emphasizes living in harmony with the Tao (the Way), the underlying principle of the universe. Key aspects include:</p>
-                            <ul>
-                                <li>The concept of wu wei (non-action or effortless action)</li>
-                                <li>Balance of yin and yang energies</li>
-                                <li>Simplicity, naturalness, and spontaneity</li>
-                                <li>Qigong and tai chi practices for energy cultivation</li>
-                            </ul>
-                            
-                            <h3>Practices to Explore</h3>
-                            <ul>
-                                <li><strong>Meditation:</strong> Vipassana, Zazen, or mantra meditation</li>
-                                <li><strong>Mindful Movement:</strong> Tai Chi, Qigong, or Yoga</li>
-                                <li><strong>Contemplative Study:</strong> Reading sacred texts with reflection</li>
-                                <li><strong>Community:</strong> Joining a sangha, temple, or study group</li>
-                            </ul>
-                        `
-                    },
+                    
                     kundaliniYoga: {
                         title: "Kundalini Yoga",
                         content: `
@@ -924,7 +926,539 @@
                             </ul>
                         `
                     },
-                    // Add more content for other topics as needed
+                    
+foundationAsanas: {
+    title: "foundationAsanas",
+    content: `
+        <p>Foundation Asanas are the basic yoga poses that help you build the strength, flexibility, and balance needed for more advanced yoga practices. These are the first postures you learn when starting yoga. They teach proper body alignment, breathing techniques, and awareness of movement.</p>
+        
+        <p>Think of them as the "ABCs" of yoga — once you master these, the rest becomes easier and more effective.</p>
+        
+        <h3>Categories of Foundation Asanas</h3>
+        
+        <h4>1. Standing Poses</h4>
+        <p>These poses strengthen your legs, improve balance, and enhance body posture.</p>
+        <ul>
+            <li><strong>Tadasana (Mountain Pose):</strong> Improves posture, balance, and body awareness.</li>
+            <li><strong>Vrikshasana (Tree Pose):</strong> Improves concentration and stability.</li>
+            <li><strong>Trikonasana (Triangle Pose):</strong> Stretches the legs and spine, strengthens the core.</li>
+            <li><strong>Virabhadrasana I & II (Warrior I & II):</strong> Builds stamina and strength in the legs and arms.</li>
+        </ul>
+        
+        <h4>2. Seated Poses</h4>
+        <p>These are done while sitting and are great for stretching the hips, calming the mind, and improving flexibility.</p>
+        <ul>
+            <li><strong>Sukhasana (Easy Pose):</strong> Ideal for meditation and breathing exercises.</li>
+            <li><strong>Padmasana (Lotus Pose):</strong> Deepens meditation and improves posture.</li>
+            <li><strong>Dandasana (Staff Pose):</strong> Strengthens back and improves alignment.</li>
+            <li><strong>Baddha Konasana (Butterfly Pose):</strong> Opens hips and stretches inner thighs.</li>
+        </ul>
+        
+        <h4>3. Supine Poses (Lying on Back)</h4>
+        <p>These poses help relax the body, stretch the back and legs, and are great for cooling down.</p>
+        <ul>
+            <li><strong>Setu Bandhasana (Bridge Pose):</strong> Strengthens back and glutes, improves digestion.</li>
+            <li><strong>Pavanamuktasana (Wind-Relieving Pose):</strong> Aids in digestion and relieves gas.</li>
+            <li><strong>Supta Baddha Konasana (Reclining Butterfly Pose):</strong> Relaxes body and opens hips.</li>
+            <li><strong>Savasana (Corpse Pose):</strong> Final relaxation pose for calming the mind and body.</li>
+        </ul>
+        
+        <h4>4. Prone Poses (Lying on Stomach)</h4>
+        <p>These strengthen the back, spine, and stimulate internal organs.</p>
+        <ul>
+            <li><strong>Bhujangasana (Cobra Pose):</strong> Strengthens spine, opens chest.</li>
+            <li><strong>Salabhasana (Locust Pose):</strong> Strengthens back, glutes, and shoulders.</li>
+            <li><strong>Dhanurasana (Bow Pose):</strong> Stimulates digestion, improves flexibility.</li>
+        </ul>
+        
+        <h4>5. Balancing Poses</h4>
+        <p>These improve your focus, coordination, and muscle control.</p>
+        <ul>
+            <li><strong>Vrikshasana (Tree Pose):</strong> Builds focus and leg strength.</li>
+            <li><strong>Garudasana (Eagle Pose):</strong> Enhances balance and strengthens legs.</li>
+            <li><strong>Natarajasana (Dancer’s Pose):</strong> Improves posture, concentration, and flexibility.</li>
+        </ul>
+        
+        <h4>6. Inversions (Beginner Level)</h4>
+        <p>These poses bring the head below the heart and help improve circulation and mental clarity.</p>
+        <ul>
+            <li><strong>Adho Mukha Svanasana (Downward-Facing Dog):</strong> Strengthens arms, stretches legs and back.</li>
+            <li><strong>Viparita Karani (Legs-up-the-wall Pose):</strong> Relieves tired legs and calms the nervous system.</li>
+        </ul>
+    `
+},
+chakraYoga: {
+    title: "What is Chakra Balancing Yoga?",
+    content: `
+        <p>Chakra Balancing Yoga is a type of yoga practice that focuses on activating, healing, and balancing the seven main chakras in the body. Chakras are energy centers in your body that affect your physical, mental, emotional, and spiritual health.</p>
+        
+        <p>When your chakras are balanced, you feel more energetic, peaceful, and focused. When they are blocked or imbalanced, it can lead to stress, confusion, or even physical problems.</p>
+        
+        <h3>Benefits of Chakra Balancing Yoga</h3>
+        <ul>
+            <li>Improves overall energy flow in the body</li>
+            <li>Reduces stress, anxiety, and emotional blocks</li>
+            <li>Enhances focus, creativity, and inner peace</li>
+            <li>Deepens your spiritual connection</li>
+            <li>Brings balance to body, mind, and spirit</li>
+        </ul>
+    `
+},
+sacralChakra:{
+    title: "Sacral Chakra (Svadhisthana)",
+    content: `
+        <p>The Sacral Chakra (Svadhisthana) is the second chakra, located below the navel. It governs your creativity, emotions, pleasure, and sexuality. This chakra is connected to your ability to enjoy life and form healthy relationships.</p>
+        
+        <p>When balanced, you feel creative, passionate, emotionally open, and joyful. When imbalanced, it can lead to emotional instability, guilt, or lack of desire.</p>
+        
+        <p>It is associated with the <strong>Water</strong> element and the color <strong>Orange</strong>.</p>
+        
+        <p>Physical areas linked to it include the reproductive organs, kidneys, and bladder. A blocked Sacral Chakra may cause mood swings, low energy, or sexual issues.</p>
+        
+        <p>Yoga poses like <em>Bound Angle Pose</em>, <em>Pigeon Pose</em>, and <em>Goddess Pose</em> help activate it. Dancing, painting, and enjoying creative hobbies also support this chakra.</p>
+        
+        <p>Affirmations like “<strong>I deserve pleasure and happiness</strong>” can aid in healing. Spending time near water can also help balance it. Breathwork focused on the hips is especially beneficial.</p>
+        
+        <p>A healthy Sacral Chakra allows emotional freedom and self-expression. It helps you connect deeply with yourself and others.</p>
+    `
+},
+solarPlexusChakra: {
+    title: "Solar Plexus Chakra (Manipura)",
+    content: `
+        <p>The Solar Plexus Chakra (Manipura) is the third chakra, located in the upper abdomen. It represents personal power, self-confidence, and inner strength.</p>
+        
+        <p>This chakra is connected to the element <strong>Fire</strong>, symbolizing energy and transformation. Its associated color is <strong>Yellow</strong>, reflecting brightness, intellect, and willpower.</p>
+        
+        <p>A balanced Manipura Chakra gives you motivation, self-discipline, and confidence. It helps you make decisions, take action, and trust your own abilities.</p>
+        
+        <p>An imbalanced Solar Plexus Chakra can lead to low self-esteem or controlling behavior. Physical symptoms may include digestive issues, fatigue, or stomach tension. Mental effects can include fear of rejection, lack of direction, or anger.</p>
+        
+        <p>Core-strengthening yoga poses like <em>Boat Pose</em> and <em>Warrior III</em> can support this chakra. Breathing exercises that generate warmth (like <em>breath of fire</em>) are also beneficial.</p>
+        
+        <p>Spending time in sunlight or practicing mindful action helps activate this energy center. Affirmations like “<strong>I am strong, confident, and in control of my life</strong>” support healing.</p>
+        
+        <p>When balanced, it empowers you to lead your life with purpose and determination. The Solar Plexus Chakra bridges emotional awareness and confident action.</p>
+    `
+},
+heartChakra: {
+    title: "Heart Chakra (Anahata)",
+    content: `
+        <p>The Heart Chakra (Anahata) is the fourth chakra, located at the center of the chest. It represents love, compassion, forgiveness, and emotional healing.</p>
+
+        <p>This chakra is associated with the <strong>Air</strong> element, symbolizing openness and freedom. Its color is <strong>Green</strong>, reflecting growth, harmony, and renewal.</p>
+
+        <p>A balanced Heart Chakra allows you to give and receive love freely. It fosters empathy, kindness, emotional balance, and strong relationships.</p>
+
+        <p>An imbalanced Heart Chakra may cause feelings of loneliness, jealousy, or resentment. Physical signs of imbalance include heart problems, asthma, or upper back pain. Emotional effects can be coldness, fear of intimacy, or dependency.</p>
+
+        <p>Healing poses include <em>Camel Pose</em>, <em>Cobra Pose</em>, and <em>Bridge Pose</em>. Breathing deeply into the chest area (<em>heart-opening breath</em>) brings flow to this chakra.</p>
+
+        <p>Practices like gratitude, hugging, or volunteering help open the heart. Affirmations like “<strong>I am open to love and deeply connected to others</strong>” are helpful.</p>
+
+        <p>When balanced, the Heart Chakra connects your lower physical energies to your higher spiritual ones. It serves as the bridge between the body and spirit, grounding love in action.</p>
+    `
+},
+throatChakra: {
+    title: "Throat Chakra (Vishuddha)",
+    content: `
+        <p>The Throat Chakra, or <strong>Vishuddha</strong>, is the fifth energy center located at the base of the throat, symbolizing purity and clarity.</p>
+
+        <p>Associated with the color <strong>Blue</strong> and the element of <strong>Space (Ether)</strong>, it governs <strong>communication, self-expression, and truth</strong>.</p>
+
+        <p>When balanced, it empowers us to speak authentically, listen deeply, and express creativity freely.</p>
+
+        <p>An imbalanced Vishuddha may manifest as a sore throat, fear of speaking, dishonesty, or excessive chatter.</p>
+
+        <p>Healing practices include chanting the <em>"HAM"</em> mantra, singing, journaling, or wearing blue stones like <em>lapis lazuli</em>.</p>
+
+        <p>Gentle yoga poses such as <em>Fish Pose (Matsyasana)</em> or <em>Shoulder Stand (Sarvangasana)</em> can also activate it.</p>
+
+        <p>Affirmations like “<strong>I communicate with clarity and confidence</strong>” help align this chakra.</p>
+
+        <p>By nurturing Vishuddha, we honor our voice and deepen connections with others.</p>
+    `
+},
+thirdEyeChakra: {
+    title: "Third Eye Chakra (Ajna)",
+    content: `
+        <p>The Third Eye Chakra, or <strong>Ajna</strong>, is the sixth energy center located between the eyebrows, often called the seat of intuition and inner wisdom.</p>
+
+        <p>Associated with the color <strong>Indigo</strong> and the element of <strong>Light</strong>, it governs <strong>insight, imagination, and spiritual awareness</strong>.</p>
+
+        <p>When balanced, Ajna enhances clarity of thought, deep intuition, and the ability to perceive beyond the physical realm.</p>
+
+        <p>An imbalanced Third Eye Chakra may lead to confusion, lack of focus, excessive daydreaming, or cynicism toward spirituality.</p>
+
+        <p>Healing practices include meditation, visualization, and working with indigo crystals like <em>amethyst</em> or <em>lapis lazuli</em>.</p>
+
+        <p>Gentle yoga poses such as <em>Child’s Pose (Balasana)</em> or <em>Seated Forward Bend (Paschimottanasana)</em> help activate it.</p>
+
+        <p>Affirmations like “<strong>I trust my inner wisdom</strong>” or “<strong>I see the truth within and around me</strong>” strengthen this chakra.</p>
+
+        <p>By awakening Ajna, we cultivate deeper self-awareness and a connection to higher consciousness.</p>
+    `
+},
+crownChakra: {
+    title: "Crown Chakra (Sahasrara)",
+    content: `
+        <p>The Crown Chakra, or <strong>Sahasrara</strong>, is the seventh and highest energy center located at the top of the head, representing our connection to the divine, universal consciousness, and spiritual enlightenment.</p>
+
+        <p>Associated with the color <strong>Violet</strong> or <strong>Pure White</strong> and the element of <strong>Thought</strong>, it transcends the physical realm, embodying unity, wisdom, and infinite bliss.</p>
+
+        <p>When balanced, Sahasrara brings profound peace, spiritual awakening, and a sense of oneness with all existence.</p>
+
+        <p>An imbalanced Crown Chakra may manifest as feelings of isolation, materialism, spiritual disconnection, or excessive rigidity in beliefs.</p>
+
+        <p>Healing practices include deep meditation, prayer, mindful silence, and exposure to sunlight or moonlight.</p>
+
+        <p>Crystals like <em>clear quartz</em>, <em>amethyst</em>, and <em>selenite</em> can amplify its energy.</p>
+
+        <p>Yoga poses such as <em>Headstand (Sirsasana)</em> or <em>Lotus Pose (Padmasana)</em> help align this chakra, while affirmations like “<strong>I am open to divine wisdom</strong>” or “<strong>I am one with the universe</strong>” foster its activation.</p>
+
+        <p>By nurturing Sahasrara, we transcend ego and embrace the boundless truth of our higher self.</p>
+    `
+},
+crystalBasics: {
+    title: "Crystals",
+    content: `
+        <p><strong>Crystals</strong> are natural minerals formed in the Earth, each with unique energetic properties that can influence emotions, healing, and spiritual growth.</p>
+
+        <p>They work by interacting with the body’s energy field (aura) and chakras, helping to balance, amplify, or transmute energy.</p>
+
+        <p><em>Clear quartz</em>, for example, is a master healer that enhances clarity, while <em>amethyst</em> promotes calm and intuition.</p>
+
+        <p>To use crystals effectively, you can wear them as jewelry, place them on your body during meditation, or keep them in your living space for energy cleansing.</p>
+
+        <p><strong>Cleansing</strong> your crystals regularly (with moonlight, saltwater, or smudging) is essential to maintain their vibrational purity.</p>
+
+        <p><strong>Programming</strong> a crystal—by setting an intention—aligns its energy with your personal goals.</p>
+
+        <p>Whether for <em>protection</em> (like black tourmaline), <em>love</em> (like rose quartz), or <em>spiritual awakening</em> (like selenite), crystals serve as powerful tools for transformation when used with awareness and respect.</p>
+    `
+},
+chakraCrystals: {
+  title: "Chakra Crystal Guide",
+  content: `
+    <p>The chakra crystal guide offers a harmonious blend of stones to align and heal your energy centers, promoting balance and vitality.</p>
+
+    <p>For the <strong>Root Chakra</strong>, grounding stones like <em>red jasper</em> and <em>black tourmaline</em> foster stability and security, while the <strong>Sacral Chakra</strong> thrives with <em>carnelian</em> or <em>moonstone</em> to ignite creativity and passion.</p>
+
+    <p>The <strong>Solar Plexus Chakra</strong> shines with <em>citrine</em> and <em>pyrite</em>, boosting confidence and personal power, whereas the <strong>Heart Chakra</strong> blossoms with <em>rose quartz</em> and <em>green aventurine</em>, nurturing love and compassion.</p>
+
+    <p><em>Lapis lazuli</em> and <em>aquamarine</em> resonate with the <strong>Throat Chakra</strong>, enhancing truthful communication, while <em>amethyst</em> and <em>labradorite</em> awaken the <strong>Third Eye Chakra</strong>, sharpening intuition.</p>
+
+    <p>At the crown, <em>clear quartz</em> and <em>selenite</em> connect you to higher wisdom and spiritual clarity.</p>
+
+    <p>Whether worn as jewelry, placed on the body, or used in meditation, these crystals work synergistically to cleanse, activate, and harmonize your chakras.</p>
+
+    <p>Regular cleansing with moonlight or sage ensures their energy remains pure and potent, supporting your journey toward holistic well-being.</p>
+
+    <p>By integrating these stones with mindful intention, you invite deeper alignment, healing, and transformation into your life.</p>
+  `
+},
+mindfulnessMeditation: {
+  title: "Mindfulness Meditation",
+  content: `
+    <p>Mindfulness meditation is the practice of anchoring your attention to the present moment with openness and non-judgment.</p>
+    <p>By focusing on your breath, bodily sensations, or surroundings, you cultivate a state of calm awareness that helps quiet mental chatter.</p>
+    <p>This practice trains the mind to observe thoughts and emotions without getting swept away by them, fostering emotional resilience and clarity.</p>
+    <p>Regular mindfulness meditation reduces stress, enhances focus, and improves emotional regulation by activating the parasympathetic nervous system.</p>
+    <p>It can be as simple as spending a few minutes each day sitting quietly, tuning into your breathing, or engaging in mindful walking or eating.</p>
+    <p>Studies show it rewires the brain over time, increasing gray matter in areas linked to self-awareness and compassion.</p>
+    <p>Unlike goal-oriented meditation, mindfulness emphasizes being rather than doing, inviting acceptance of each moment as it is.</p>
+    <p>Whether you're a beginner or experienced, this accessible practice offers profound benefits for mental, emotional, and even physical well-being.</p>
+    <p>Ready to begin? Start with just five minutes—here and now. </p>
+  `
+},
+soundHealing: {
+  title: "Sound Healing",
+  content: `
+    <p>Sound healing is an ancient therapeutic practice that uses vibrational frequencies—from singing bowls, gongs, tuning forks, or chanting—to harmonize the body, mind, and spirit.</p>
+    <p>Just as sound waves ripple through water, these vibrations interact with our cells and energy fields, releasing blockages and promoting deep relaxation.</p>
+    <p>Each frequency corresponds to specific chakras; for example, 528Hz (the "Love Frequency") repairs DNA, while 432Hz aligns with the heart chakra, fostering inner peace.</p>
+    <p>Instruments like Tibetan singing bowls induce theta brainwaves (linked to meditation and healing), and crystal bowls amplify clarity through quartz’s piezoelectric properties.</p>
+    <p>Modern science shows sound therapy can lower cortisol, improve sleep, and even reduce chronic pain by entraining the nervous system into coherence.</p>
+    <p>Whether experienced in a group sound bath or through solo practices like mantra repetition (e.g., "OM"), this modality bridges science and spirituality.</p>
+    <p>To begin, simply listen mindfully or place a singing bowl on your body—let the waves wash over you, tuning your being like an instrument. 🎵✨</p>
+  `
+},
+guidedVisualization:{
+  title: "Guided Visualization",
+  content: `Guided visualization is a powerful meditation technique that uses intentional mental imagery to manifest change, reduce stress, and activate the subconscious mind. By following a narrator’s prompts—or creating your own inner journey—you immerse yourself in vivid sensory experiences, like walking through a forest, bathing in light, or meeting a wise inner guide. This practice taps into the brain’s neuroplasticity, where imagined scenarios (e.g., success, healing, or calm) stimulate the same neural pathways as real-life experiences, rewiring limiting beliefs. Athletes and therapists use it to boost performance and process emotions, while spiritual traditions employ it for chakra activation or past-life exploration. To begin, find a quiet space, close your eyes, and visualize a desired outcome or peaceful scene with as much detail as possible—textures, colors, sounds, even scents. Pair it with affirmations ("I am safe") or healing colors (e.g., green for the heart). Regular practice cultivates focus, reduces anxiety, and aligns you with your deepest intentions.`
+},
+
+natureConnection: {
+  overview: `Connecting with nature is a powerful way to restore balance, reduce stress, and deepen spiritual awareness. Below are various practices categorized for different levels of engagement—from simple daily habits to immersive experiences.`,
+
+  groundingPractices: {
+    description: `Direct physical contact with the Earth’s energy to stabilize the body and mind.`,
+
+    barefootWalking: {
+      description: `Walk on grass, sand, or soil to absorb Earth’s electrons, which reduce inflammation.`,
+      tips: [
+        `Best done in the morning dew or after rain for enhanced benefits.`,
+        `10–30 minutes daily can improve sleep and reduce stress.`
+      ]
+    },
+
+    treeHugging: {
+      description: `Placing hands/palms on tree bark (especially oak, pine, or cedar) transfers grounding energy.`,
+      benefits: [
+        `Lowers cortisol and boosts oxytocin (the "love hormone").`,
+        `Stand quietly and observe the tree’s energy for deeper connection.`
+      ]
+    },
+
+    lyingOnEarth: {
+      description: `Lie flat on grass, sand, or near a body of water to discharge electromagnetic stress.`,
+      benefits: [`Enhances mood by increasing serotonin levels.`]
+    }
+  },
+
+  sensoryImmersionPractices: {
+    description: `Engaging all five senses to deepen nature’s healing effects.`,
+
+    mindfulListening: {
+      description: `Sit quietly and identify natural sounds (birds, wind, water).`,
+      technique: `Try "sound mapping"—closing your eyes and pointing to where sounds originate.`
+    },
+
+    touchExploration: {
+      description: `Run fingers over textured surfaces (tree bark, stones, moss).`,
+      tips: [`Hold a smooth rock or dip hands in a stream to feel energy shifts.`]
+    },
+
+    scentAwareness: {
+      description: `Breathe deeply near flowers, pine forests, or after rain (petrichor).`,
+      tips: [`Carry a small pouch of dried lavender or cedar for calming effects.`]
+    }
+  },
+
+  natureMeditationAndRituals: {
+    description: `Structured practices to align with natural cycles and energies.`,
+
+    sunriseSunsetGazing: {
+      description: `Softly watch the sun rise or set (avoid direct midday sun).`,
+      benefits: [`Enhances circadian rhythm and vitamin D absorption.`]
+    },
+
+    moonRituals: {
+      newMoon: `Set intentions with a bowl of water under moonlight.`,
+      fullMoon: `Charge crystals or journal reflections in its light.`
+    },
+
+    elementalMeditation: {
+      description: `Sit near water (river, ocean), fire (bonfire, candle), or wind (hilltop).`,
+      technique: `Visualize absorbing the element’s qualities (flow, passion, clarity).`
+    }
+  },
+
+  activeNatureEngagement: {
+    description: `Movement-based practices to merge with natural rhythms.`,
+
+    forestBathing: {
+      description: `Slow, mindful walks in dense woods, focusing on breath and greenery.`,
+      benefits: [`Phytoncides (tree oils) boost immunity and lower blood pressure.`]
+    },
+
+    gardeningAsTherapy: {
+      description: `Planting seeds mirrors personal growth; soil microbes act as natural antidepressants.`,
+      tips: [`"Earthing gloves" allow skin contact while gardening.`]
+    },
+
+    natureJournaling: {
+      description: `Sketch or write about observations (cloud patterns, animal behavior).`,
+      benefits: [`Track seasonal changes to cultivate patience and presence.`]
+    }
+  },
+
+  spiritualAndEnergeticPractices: {
+    description: `Deeper rituals to commune with nature’s intelligence.`,
+
+    stoneAndCrystalGrids: {
+      description: `Arrange local stones in sacred geometry patterns (e.g., flower of life).`,
+      tips: [`Use quartz or selenite to amplify energy in natural spaces.`]
+    },
+
+    waterBlessings: {
+      description: `Offer gratitude to rivers/oceans by placing hands in water and praying.`,
+      practices: [`Collect "moon water" (water charged under moonlight) for rituals.`]
+    },
+
+    animalSpiritGuidance: {
+      description: `Observe recurring animals (hawks, deer) as messengers; research their symbolism.`,
+      tips: [`Leave offerings (birdseed, corn) to honor animal guides.`]
+    }
+  },
+
+  finalTips: [
+    `Consistency: Even 5 minutes daily outdoors builds a bond.`,
+    `Tech Detox: Leave devices behind to fully immerse.`,
+    `Seasonal Alignment: Adapt practices to winter (snow gazing) or summer (swimming).`,
+    `Nature is the wisest teacher—listen closely, and it will reveal its secrets. `
+  ]
+},
+
+natureConnection: {
+  title: "Nature Connection Practices: A Detailed Guide",
+  content: `
+    <p>Connecting with nature is a powerful way to restore balance, reduce stress, and deepen spiritual awareness. Below are various practices categorized for different levels of engagement—from simple daily habits to immersive experiences.</p>
+
+    <ol>
+      <li>
+        <strong>Grounding Practices (Earthing)</strong><br/>
+        <p>Direct physical contact with the Earth’s energy to stabilize the body and mind.</p>
+        <ul>
+          <li>
+            <strong>Barefoot Walking</strong><br/>
+            Walk on grass, sand, or soil to absorb Earth’s electrons, which reduce inflammation.<br/>
+            <ul>
+              <li>Best done in the morning dew or after rain for enhanced benefits.</li>
+              <li>10–30 minutes daily can improve sleep and reduce stress.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Tree Hugging (Forest Bathing Lite)</strong><br/>
+            Placing hands/palms on tree bark (especially oak, pine, or cedar) transfers grounding energy.<br/>
+            <ul>
+              <li>Studies show it lowers cortisol and boosts oxytocin (the "love hormone").</li>
+              <li>Stand quietly and observe the tree’s energy for deeper connection.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Lying on the Earth</strong><br/>
+            Lie flat on grass, sand, or near a body of water to discharge electromagnetic stress.<br/>
+            <ul>
+              <li>Enhances mood by increasing serotonin levels.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <strong>Sensory Immersion Practices</strong><br/>
+        <p>Engaging all five senses to deepen nature’s healing effects.</p>
+        <ul>
+          <li>
+            <strong>Mindful Listening</strong><br/>
+            Sit quietly and identify natural sounds (birds, wind, water).<br/>
+            Try "sound mapping"—closing your eyes and pointing to where sounds originate.
+          </li>
+          <li>
+            <strong>Touch Exploration</strong><br/>
+            Run fingers over textured surfaces (tree bark, stones, moss).<br/>
+            <ul>
+              <li>Hold a smooth rock or dip hands in a stream to feel energy shifts.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Scent Awareness</strong><br/>
+            Breathe deeply near flowers, pine forests, or after rain (petrichor).<br/>
+            <ul>
+              <li>Carry a small pouch of dried lavender or cedar for calming effects.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <strong>Nature Meditation & Rituals</strong><br/>
+        <p>Structured practices to align with natural cycles and energies.</p>
+        <ul>
+          <li>
+            <strong>Sunrise/Sunset Gazing</strong><br/>
+            Softly watch the sun rise or set (avoid direct midday sun).<br/>
+            <ul>
+              <li>Enhances circadian rhythm and vitamin D absorption.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Moon Rituals</strong><br/>
+            <ul>
+              <li>New Moon: Set intentions with a bowl of water under moonlight.</li>
+              <li>Full Moon: Charge crystals or journal reflections in its light.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Elemental Meditation</strong><br/>
+            Sit near water (river, ocean), fire (bonfire, candle), or wind (hilltop).<br/>
+            Visualize absorbing the element’s qualities (flow, passion, clarity).
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <strong>Active Nature Engagement</strong><br/>
+        <p>Movement-based practices to merge with natural rhythms.</p>
+        <ul>
+          <li>
+            <strong>Forest Bathing (Shinrin-Yoku)</strong><br/>
+            Slow, mindful walks in dense woods, focusing on breath and greenery.<br/>
+            <ul>
+              <li>Phytoncides (tree oils) boost immunity and lower blood pressure.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Gardening as Therapy</strong><br/>
+            Planting seeds mirrors personal growth; soil microbes act as natural antidepressants.<br/>
+            <ul>
+              <li>"Earthing gloves" allow skin contact while gardening.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Nature Journaling</strong><br/>
+            Sketch or write about observations (cloud patterns, animal behavior).<br/>
+            <ul>
+              <li>Track seasonal changes to cultivate patience and presence.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <strong>Spiritual & Energetic Practices</strong><br/>
+        <p>Deeper rituals to commune with nature’s intelligence.</p>
+        <ul>
+          <li>
+            <strong>Stone & Crystal Grids</strong><br/>
+            Arrange local stones in sacred geometry patterns (e.g., flower of life).<br/>
+            <ul>
+              <li>Use quartz or selenite to amplify energy in natural spaces.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Water Blessings</strong><br/>
+            Offer gratitude to rivers/oceans by placing hands in water and praying.<br/>
+            <ul>
+              <li>Collect "moon water" (water charged under moonlight) for rituals.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Animal Spirit Guidance</strong><br/>
+            Observe recurring animals (hawks, deer) as messengers; research their symbolism.<br/>
+            <ul>
+              <li>Leave offerings (birdseed, corn) to honor animal guides.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ol>
+
+    <p><strong>Final Tips for Deepening Connection</strong></p>
+    <ul>
+      <li>Consistency: Even 5 minutes daily outdoors builds a bond.</li>
+      <li>Tech Detox: Leave devices behind to fully immerse.</li>
+      <li>Seasonal Alignment: Adapt practices to winter (snow gazing) or summer (swimming).</li>
+      <li>Nature is the wisest teacher—listen closely, and it will reveal its secrets. </li>
+    </ul>
+  `
+},
+
+
+
+// Add more content for other topics as needed
+
+
                 };
 
                 // Return requested content or a default message
