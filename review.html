@@ -1,1 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soulscape | Reviews</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Garamond', serif;
+            background-color: #1a1a2e;
+            color: #e6f7ff;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #16213e;
+            padding: 20px 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .header h1 {
+            font-size: 40px;
+            margin: 0;
+        }
+
+        .back-link {
+            background-color: #8a2be2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .back-link:hover {
+            background-color: #b57edc;
+            color: #222;
+        }
+
+        .reviews-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 32px;
+            color: #fca510;
+            margin-bottom: 40px;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .review-card {
+            background-color: #0f3460;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .review-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .reviewer img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 2px solid #8a2be2;
+        }
+
+        .reviewer-info h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #e6f7ff;
+        }
+
+        .reviewer-info p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            color: #c9d6ff;
+            font-style: italic;
+        }
+
+        .review-content {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #e6f7ff;
+        }
+
+        .rating {
+            color: #ffd700;
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        .product,
+        .review-card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .product:hover,
+        .review-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(138, 43, 226, 0.2);
+            /* Purple glow */
+        }
+
+        .review-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .review-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid transparent;
+            border-radius: 15px;
+            transition: border-color 0.4s ease;
+        }
+
+        .review-card:hover::after {
+            border-color: #8a2be2;
+            animation: borderGlow 2s infinite;
+        }
+
+        @keyframes borderGlow {
+            0% {
+                border-color: #8a2be2;
+            }
+
+            50% {
+                border-color: #b57edc;
+            }
+
+            100% {
+                border-color: #8a2be2;
+            }
+        }
+
+        .ribbon {
+            background: linear-gradient(90deg, #fca510 0%, #16213e 100%);
+            color: #e6f7ff;
+            display: flex;
+            align-items: center;
+            padding: 0 18px;
+            height: 64px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 2px 12px rgba(22, 33, 62, 0.15);
+        }
+
+        .ribbon-logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            color: #16213e;
+            background: #fca510;
+            border-radius: 10px;
+            padding: 8px 18px;
+            margin-right: 32px;
+        }
+
+        .ribbon-nav {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .ribbon-nav a {
+            color: #e6f7ff;
+            text-decoration: none;
+            font-size: 1.07rem;
+            font-weight: 600;
+            padding: 6px 18px;
+            border-radius: 20px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .ribbon-nav a:hover,
+        .ribbon-nav a.active {
+            background: #e6f7ff;
+            color: #16213e;
+        }
+
+        @media (max-width: 700px) {
+            .ribbon {
+                flex-direction: column;
+                height: auto;
+                padding: 8px 0;
+            }
+
+            .ribbon-logo {
+                margin: 0 0 8px 0;
+            }
+
+            .ribbon-nav {
+                flex-wrap: wrap;
+                gap: 8px;
+                justify-content: center;
+            }
+
+            .ribbon-nav a {
+                padding: 6px 10px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>SoulScape</h1>
+    </div>
+
+    <div class="ribbon">
+        <span class="ribbon-logo">SoulScape</span>
+        <nav class="ribbon-nav">
+            <a href="bookretreat.html">Book Retreat</a>
+            <a href="selfreflect.html">Self Reflect</a>
+            <a href="soulLibrary.html">Soul Library</a>
+            <a href="store.html">Store</a>
+            <a href="volunteer.html">Volunteer</a>
+            <a href="review.html">Review</a>
+            <a href="founder.html">Founders</a>
+        </nav>
+    </div>
+
+    <div class="reviews-container">
+        <h2>Transformations Through Soulscape</h2>
+        <div class="reviews-grid">
+            <!-- Review 1 -->
+            <div class="review-card">
+                <div class="reviewer">
+                    <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Priya K.">
+                    <div class="reviewer-info">
+                        <h3>Priya K.</h3>
+                        <p>Yoga Practitioner, Mumbai</p>
+                    </div>
+                </div>
+                <div class="review-content">
+                    <p>"The Moon Phase Deck reads my energy like an old friend. I pull a card each morning, and it’s
+                        eerily accurate—down to my creative slumps. The ink even glows under moonlight! Soulscape’s
+                        curation is witchcraft (the good kind)."</p>
+                </div>
+                <div class="rating">★★★★★</div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="review-card">
+                <div class="reviewer">
+                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Rahul S.">
+                    <div class="reviewer-info">
+                        <h3>Rahul S.</h3>
+                        <p>Corporate Executive, Delhi</p>
+                    </div>
+                </div>
+                <div class="review-content">
+                    <p>"The ‘Digital Detox Retreat’ at Auroville rewired my brain. No phones, just sunrise meditations
+                        at Matrimandir and coconut water under banyan trees. Came back and finally wrote that book
+                        proposal I’d been avoiding."</p>
+                </div>
+                <div class="rating">★★★★☆</div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="review-card">
+                <div class="reviewer">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ananya R.">
+                    <div class="reviewer-info">
+                        <h3>Ananya R.</h3>
+                        <p>Reiki Healer, Bangalore</p>
+                    </div>
+                </div>
+                <div class="review-content">
+                    <p>"The quiz said I needed ‘shadow work.’ I laughed… until the journal prompts made me cry. Turns
+                        out, my ‘anger at traffic’ was grief over Dad. Who knew? (P.S. Buying the chakra bracelet
+                        next.)"</p>
+                </div>
+                <div class="rating">★★★★★</div>
+            </div>
+
+            <!-- Review 4 -->
+            <div class="review-card">
+                <div class="reviewer">
+                    <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Arjun M.">
+                    <div class="reviewer-info">
+                        <h3>Arjun M.</h3>
+                        <p>Student, Pune</p>
+                    </div>
+                </div>
+                <div class="review-content">
+                    <p>"The library’s ‘Sacred Geometry’ section taught me to design spaces that hum. Clients now say my
+                        rooms ‘feel alive.’ Also, the librarian recommended a crystal grid—my cat won’t leave the energy
+                        vortex spot. Win."</p>
+                </div>
+                <div class="rating">★★★★☆</div>
+            </div>
+
+            <!-- Review 5 -->
+            <div class="review-card">
+                <div class="reviewer">
+                    <img src="https://randomuser.me/api/portraits/women/53.jpg" alt="Meera P.">
+                    <div class="reviewer-info">
+                        <h3>Meera P.</h3>
+                        <p>Homemaker, Chennai</p>
+                    </div>
+                </div>
+                <div class="review-content">
+                    <p>"The herbal smudge kit cleansed my home of negative energy after a difficult period. My family
+                        sleeps better, and the aura spray is now our morning ritual. Grateful for Soulscape."</p>
+                </div>
+                <div class="rating">★★★☆☆</div>
+            </div>
+
+            <!-- Review 6 -->
+            <div class="review-card">
+                <div class="reviewer">
+                    <img src="https://randomuser.me/api/portraits/men/76.jpg" alt="Vikram J.">
+                    <div class="reviewer-info">
+                        <h3>Vikram J.</h3>
+                        <p>Artist, Goa</p>
+                    </div>
+                </div>
+                <div class="review-content">
+                    <p>"Quiz told me I’m a ‘storm archetype’—needed grounding. Bought the meditation mat and mala beads.
+                        Now I sit through lectures without doomscrolling. Professors are shook."</p>
+                </div>
+                <div class="rating">★★★★★</div>
+            </div>
+
+            <!-- Review 7 -->
+            <div class="review-card">
+                <div class="reviewer">
+                    <img src="https://randomuser.me/api/portraits/men/35.jpg" alt="Karan L.">
+                    <div class="reviewer-info">
+                        <h3>Karan L.</h3>
+                        <p>Filmmaker, Jaipur</p>
+                    </div>
+                </div>
+                <div class="review-content">
+                    <p>"The library’s dream journaling book helped me decode recurring nightmares about clocks. Turns
+                        out, I was terrified of aging. Wrote a short film about it—won a festival award. Full circle."
+                    </p>
+                </div>
+                <div class="rating">★★★★★</div>
+            </div>
+
+            <!-- Review 8 -->
+            <div class="review-card">
+                <div class="reviewer">
+                    <img src="https://randomuser.me/api/portraits/women/30.jpg" alt="Priya M.">
+                    <div class="reviewer-info">
+                        <h3>Priya M.</h3>
+                        <p>Architect, Goa</p>
+                    </div>
+                </div>
+                <div class="review-content">
+                    <p>"The library’s ‘Sacred Geometry’ section taught me to design spaces that hum. Clients now say my
+                        rooms ‘feel alive.’ Also, the librarian recommended a crystal grid—my cat won’t leave the energy
+                        vortex spot. Win."</p>
+                </div>
+                <div class="rating">★★★★★</div>
+            </div>
+
+            <!-- Review 9 -->
+            <div class="review-card">
+                <div class="reviewer">
+                    <img src="https://randomuser.me/api/portraits/men/40.jpg" alt="Rohan P.">
+                    <div class="reviewer-info">
+                        <h3>Rohan P.</h3>
+                        <p>Skeptic Turned Beliver, Mumbai</p>
+                    </div>
+                </div>
+                <div class="review-content">
+                    <p>The quiz said I needed ‘shadow work.’ I laughed… until the journal prompts made me cry. Turns
+                        out, my ‘anger at traffic’ was grief over Dad. Who knew? (P.S. Buying the chakra bracelet
+                        next.)"</p>
+                </div>
+                <div class="rating">★★★★☆</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fade-in animation for review cards
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                } else {
+                    entry.target.classList.remove('show');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.review-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+
+</html>
