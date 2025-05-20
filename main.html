@@ -10,6 +10,8 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      width: 100vw;
+      overflow-x: hidden;
     }
     body {
       font-family: Garamond, serif;
@@ -66,69 +68,89 @@
       color: #16213e;
     }
     .main-section {
-      max-width: 1400px;
-      margin: 0 auto;
-      margin-top: 30px;
-      margin-bottom: 30px;
-      padding: 32px 0;
+      width: 100vw;
+      min-height: calc(100vh - 64px);
+      margin: 0;
+      padding: 0;
       background: #16213e;
-      border-radius: 18px;
-      box-shadow: 0 10px 30px rgba(22,33,62,0.18);
-      width: 97vw;
+      border-radius: 0;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
     }
     .sections-scroll {
       margin-top: 36px;
       display: flex;
       flex-direction: column;
       gap: 48px;
+      width: 100vw;
     }
     .feature-row {
       display: flex;
       align-items: stretch;
-      gap: 50px;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-      width: 100%;
+      gap: 0;
+      margin-bottom: 0;
+      flex-wrap: nowrap;
+      width: 100vw;
+      min-height: 480px;
+      height: 48vh;
+      max-height: 600px;
     }
     .feature-row.reverse {
       flex-direction: row-reverse;
     }
     .feature-image {
-      flex: 1 1 520px;
-      max-width: 600px;
+      flex: 1 1 50vw;
+      max-width: 50vw;
       min-width: 320px;
-      min-height: 370px;
-      height: 400px;
+      min-height: 100%;
+      height: 100%;
       background: #e6f7ff;
-      border-radius: 18px;
+      border-radius: 0;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      box-shadow: 0 4px 16px rgba(252,165,16,0.11);
+      box-shadow: 0 4px 16px rgba(252,165,16,0.08);
     }
     .feature-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 18px;
+      border-radius: 0;
       display: block;
     }
     .feature-description {
-      flex: 1 1 520px;
-      color: #e6f7ff;
-      font-size: 1.18rem;
-      background: #1a1a2e;
-      border-radius: 12px;
-      padding: 18px 36px;
-      text-align: left;
+      flex: 1 1 50vw;
+      max-width: 50vw;
       min-width: 320px;
-      min-height: 370px;
-      height: 400px;
+      min-height: 100%;
+      height: 100%;
+      background: #1a1a2e;
+      color: #e6f7ff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: stretch;
+      box-sizing: border-box;
+      padding: 2.3em 3vw;
+      font-size: 1.18rem;
+    }
+    .feature-description-inner {
+      flex: 1 1 auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      box-sizing: border-box;
+      align-items: flex-start;
+      height: 100%;
+      /* This will make the text fill the height between the top/bottom lines */
+    }
+    .feature-description-spacer {
+      height: 2em;
+      flex-shrink: 0;
+      flex-grow: 0;
     }
     .section-title {
       color: #fca510;
@@ -144,16 +166,18 @@
       color: #e6f7ff;
     }
     @media (max-width: 1200px) {
-      .main-section { max-width: 99vw; }
-      .feature-row, .feature-row.reverse { flex-direction: column; gap: 30px; }
-      .feature-description { padding: 14px 10px; min-width: 0; min-height: 220px; height: auto;}
-      .feature-image { width: 100%; max-width: 100%; height: 220px; min-height: 120px;}
+      .main-section { max-width: 100vw; }
+      .sections-scroll { margin-top: 22px; gap: 28px; }
+      .feature-row, .feature-row.reverse { flex-direction: column; min-height: 360px; height: auto; }
+      .feature-description, .feature-image { max-width: 100vw; min-width: 0; height: 300px; min-height: 160px;}
     }
     @media (max-width: 700px) {
-      .main-section { border-radius: 0; margin: 0; padding: 7vw 0; }
-      .feature-row, .feature-row.reverse { gap: 18px; }
-      .feature-description { font-size: 1rem; }
-      .feature-image { height: 110px; min-height: 80px; }
+      .main-section { border-radius: 0; margin: 0; padding: 0; }
+      .feature-row, .feature-row.reverse { gap: 0; margin-bottom: 0; }
+      .feature-description { font-size: 1rem; padding: 1.5em 5vw;}
+      .feature-description-spacer { height: 1em; }
+      .feature-description-inner { padding: 0; }
+      .feature-image { height: 120px; min-height: 80px; }
     }
   </style>
 </head>
@@ -172,7 +196,7 @@
   </div>
 
   <div class="main-section">
-    <h1 style="color:#fca510;text-align:center;font-size:2.3rem;margin-bottom:16px;">Welcome to SoulScape</h1>
+    <h1 style="color:#fca510;text-align:center;font-size:2.3rem;margin:32px 0 16px 0;">Welcome to SoulScape</h1>
     <p style="text-align:center;max-width:640px;margin:0 auto 36px;">
       Your sanctuary for soulful journeys, spiritual discovery, and holistic well-being. Explore our offerings below!
     </p>
@@ -180,92 +204,113 @@
       <!-- 1. BookRetreat -->
       <div class="feature-row">
         <div class="feature-image">
-          <!-- Upload your image as retreat.jpg -->
           <img src="retreat.jpg" alt="Book a Spiritual Retreat"/>
         </div>
         <div class="feature-description">
-          <a class="section-title" href="bookretreat.html">Book Retreat</a>
-          <p>
-            Embark on a transformative retreat at sacred destinations across India. Our interactive map lets you explore and book spiritual experiences in places like Rishikesh, Varanasi, Auroville, and Coimbatore. Click on a lotus to discover details and plan your soulful getaway!
-          </p>
+          <div class="feature-description-spacer"></div>
+          <div class="feature-description-inner">
+            <a class="section-title" href="bookretreat.html">Book Retreat</a>
+            <p>
+              Embark on a transformative retreat at sacred destinations across India. Our interactive map lets you explore and book spiritual experiences in places like Rishikesh, Varanasi, Auroville, and Coimbatore. Click on a lotus to discover details and plan your soulful getaway!
+            </p>
+          </div>
+          <div class="feature-description-spacer"></div>
         </div>
       </div>
       <!-- 2. Self Reflect -->
       <div class="feature-row reverse">
         <div class="feature-image">
-          <!-- Upload your image as selfreflect.jpg -->
           <img src="selfreflect.jpg" alt="Self Reflection"/>
         </div>
         <div class="feature-description">
-          <a class="section-title" href="selfreflect.html">Self Reflect</a>
-          <p>
-            Journey inward with our guided self-reflection tool. Answer thoughtful questions to gain insights into your spiritual connection, self-awareness, and areas for growth. Receive a personalized summary to illuminate your unique path.
-          </p>
+          <div class="feature-description-spacer"></div>
+          <div class="feature-description-inner">
+            <a class="section-title" href="selfreflect.html">Self Reflect</a>
+            <p>
+              Journey inward with our guided self-reflection tool. Answer thoughtful questions to gain insights into your spiritual connection, self-awareness, and areas for growth. Receive a personalized summary to illuminate your unique path.
+            </p>
+          </div>
+          <div class="feature-description-spacer"></div>
         </div>
       </div>
       <!-- 3. Soul Library -->
       <div class="feature-row">
         <div class="feature-image">
-          <!-- Upload your image as library.jpg -->
           <img src="library.jpg" alt="Soul Library"/>
         </div>
         <div class="feature-description">
-          <a class="section-title" href="soulLibrary.html">Soul Library</a>
-          <p>
-            Discover a curated collection of spiritual wisdom, practices, and resources. The Soul Library features guides on meditation, yoga, chakras, energy work, indigenous wisdom, and more. Search, browse, and deepen your spiritual knowledge at your own pace.
-          </p>
+          <div class="feature-description-spacer"></div>
+          <div class="feature-description-inner">
+            <a class="section-title" href="soulLibrary.html">Soul Library</a>
+            <p>
+              Discover a curated collection of spiritual wisdom, practices, and resources. The Soul Library features guides on meditation, yoga, chakras, energy work, indigenous wisdom, and more. Search, browse, and deepen your spiritual knowledge at your own pace.
+            </p>
+          </div>
+          <div class="feature-description-spacer"></div>
         </div>
       </div>
       <!-- 4. Store -->
       <div class="feature-row reverse">
         <div class="feature-image">
-          <!-- Upload your image as store.jpg -->
           <img src="store.jpg" alt="SoulScape Store"/>
         </div>
         <div class="feature-description">
-          <a class="section-title" href="store.html">Store</a>
-          <p>
-            Shop soulful essentials! Find aromatic candles, healing crystals, spiritual journals, meditation mats, incense, affirmation cards, and more. Our curated store brings you tools to enhance your spiritual journey and well-being.
-          </p>
+          <div class="feature-description-spacer"></div>
+          <div class="feature-description-inner">
+            <a class="section-title" href="store.html">Store</a>
+            <p>
+              Shop soulful essentials! Find aromatic candles, healing crystals, spiritual journals, meditation mats, incense, affirmation cards, and more. Our curated store brings you tools to enhance your spiritual journey and well-being.
+            </p>
+          </div>
+          <div class="feature-description-spacer"></div>
         </div>
       </div>
       <!-- 5. Volunteer -->
       <div class="feature-row">
         <div class="feature-image">
-          <!-- Upload your image as volunteer.jpg -->
           <img src="volunteer.jpg" alt="Volunteer & Seva"/>
         </div>
         <div class="feature-description">
-          <a class="section-title" href="volunteer.html">Volunteer</a>
-          <p>
-            Give back through seva (selfless service) with SoulScape. Join community meals, mindfulness outreach, eco-initiatives, art for children, event support, and more. Sign up to spread light and compassion in Bangalore and beyond.
-          </p>
+          <div class="feature-description-spacer"></div>
+          <div class="feature-description-inner">
+            <a class="section-title" href="volunteer.html">Volunteer</a>
+            <p>
+              Give back through seva (selfless service) with SoulScape. Join community meals, mindfulness outreach, eco-initiatives, art for children, event support, and more. Sign up to spread light and compassion in Bangalore and beyond.
+            </p>
+          </div>
+          <div class="feature-description-spacer"></div>
         </div>
       </div>
       <!-- 6. Review -->
       <div class="feature-row reverse">
         <div class="feature-image">
-          <!-- Upload your image as review.jpg -->
           <img src="review.jpg" alt="Reviews"/>
         </div>
         <div class="feature-description">
-          <a class="section-title" href="review.html">Review</a>
-          <p>
-            Share your SoulScape experience! Read heartfelt testimonials from our community and let your voice inspire others. Whether it’s a retreat, a resource, or a product, your feedback helps us grow together.
-          </p>
+          <div class="feature-description-spacer"></div>
+          <div class="feature-description-inner">
+            <a class="section-title" href="review.html">Review</a>
+            <p>
+              Share your SoulScape experience! Read heartfelt testimonials from our community and let your voice inspire others. Whether it’s a retreat, a resource, or a product, your feedback helps us grow together.
+            </p>
+          </div>
+          <div class="feature-description-spacer"></div>
         </div>
       </div>
       <!-- 7. Founder -->
       <div class="feature-row">
         <div class="feature-image">
-          <!-- Upload your image as founder.jpg -->
           <img src="founder.jpg" alt="Founder"/>
         </div>
         <div class="feature-description">
-          <a class="section-title" href="founder.html">Founder</a>
-          <p>
-            Meet the heart behind SoulScape. Learn about our founder’s vision, journey, and commitment to fostering a soulful, connected community in Bangalore and beyond.
-          </p>
+          <div class="feature-description-spacer"></div>
+          <div class="feature-description-inner">
+            <a class="section-title" href="founder.html">Founder</a>
+            <p>
+              Meet the heart behind SoulScape. Learn about our founder’s vision, journey, and commitment to fostering a soulful, connected community in Bangalore and beyond.
+            </p>
+          </div>
+          <div class="feature-description-spacer"></div>
         </div>
       </div>
     </div>
