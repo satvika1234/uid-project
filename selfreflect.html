@@ -6,10 +6,10 @@
     <title>Spiritual Reflection - Welcome</title>
     <style>
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: Garamond, serif;
             line-height: 1.6;
-            color: #4a3b36;
-            background: linear-gradient(135deg, #f8f4e9 0%, #eee5d6 100%);
+            color: #e6f7ff;
+            background: #1a1a2e;
             margin: 0;
             padding: 0;
             min-height: 100vh;
@@ -19,8 +19,8 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 2rem;
-            background-color: #fff;
-            box-shadow: 0 10px 30px rgba(120, 90, 70, 0.1);
+            background-color: #16213e;
+            box-shadow: 0 10px 30px rgba(22, 33, 62, 0.2);
             border-radius: 15px;
             margin-top: 50px;
             margin-bottom: 50px;
@@ -29,12 +29,13 @@
         header {
             text-align: center;
             margin-bottom: 2rem;
-            border-bottom: 2px solid #e6d9c5;
+            border-bottom: 2px solid #e6f7ff;
             padding-bottom: 1rem;
         }
 
         h1 {
-            color: #7e5941;
+            /* Heading uses default font */
+            color: #fca510;
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
             font-weight: 600;
@@ -43,7 +44,7 @@
 
         p.intro {
             font-size: 1.1rem;
-            color: #6b5c50;
+            color: #e6f7ff;
             margin-bottom: 2rem;
             font-weight: 300;
         }
@@ -52,20 +53,21 @@
             text-align: center;
             margin: 2rem 0;
             padding: 1.5rem;
-            background-color: #fdfaf5;
+            background-color: #e6f7ff;
+            color: #16213e;
             border-radius: 10px;
             font-size: 1.3rem;
         }
 
         .username {
             font-weight: bold;
-            color: #7e5941;
+            color: #fca510;
             font-size: 1.5rem;
         }
 
         button {
-            background: linear-gradient(135deg, #a68069 0%, #7e5941 100%);
-            color: white;
+            background: linear-gradient(135deg, #fca510 0%, #e6f7ff 100%);
+            color: #16213e;
             border: none;
             padding: 1rem 2rem;
             font-size: 1.1rem;
@@ -80,20 +82,20 @@
         }
 
         button:hover {
-            background: linear-gradient(135deg, #9a725c 0%, #6a4c38 100%);
+            background: linear-gradient(135deg, #fca510 0%, #1a1a2e 100%);
+            color: #e6f7ff;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(126, 89, 65, 0.2);
+            box-shadow: 0 5px 15px rgba(252, 165, 16, 0.2);
         }
 
-        /* Mandala-inspired decoration for headers */
         header::after {
             content: "☸";
             display: block;
             text-align: center;
             font-size: 2rem;
-            color: #c1a183;
+            color: #fca510;
             margin-top: 1rem;
-            opacity: 0.6;
+            opacity: 0.7;
         }
     </style>
 </head>
@@ -123,18 +125,14 @@
     </div>
 
     <script>
-        // Get name from URL parameter (passed from login page)
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
             const name = urlParams.get('name');
-            
             if (name) {
                 document.getElementById('user-name').textContent = name;
-                // Store in session storage for use in other pages
                 sessionStorage.setItem('userName', name);
             }
         }
-        
         function startAssessment() {
             window.location.href = 'p1.html';
         }
