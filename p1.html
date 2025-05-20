@@ -173,7 +173,7 @@
         </form>
     </div>
     <script>
-        // Update slider values on change
+
         const sliders = document.querySelectorAll('.slider');
         sliders.forEach(slider => {
             const valueDisplay = document.getElementById(`${slider.id}-value`);
@@ -182,7 +182,6 @@
             });
         });
 
-        // Retrieve username from session storage
         window.onload = function() {
             const userName = sessionStorage.getItem('userName');
             if (userName) {
@@ -190,16 +189,13 @@
             }
         };
 
-        // Handle form submission - store values and redirect to part 2
         document.getElementById('spiritual-form-part1').addEventListener('submit', function(e) {
             e.preventDefault();
-            // Store values in session storage
             sessionStorage.setItem('q1', document.getElementById('q1').value);
             sessionStorage.setItem('q2', document.getElementById('q2').value);
             sessionStorage.setItem('q3', document.getElementById('q3').value);
             sessionStorage.setItem('q4', document.getElementById('q4').value);
             sessionStorage.setItem('q5', document.getElementById('q5').value);
-            // Redirect to part 2
             window.location.href = 'p2.html';
         });
     </script>
