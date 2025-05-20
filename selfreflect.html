@@ -14,7 +14,47 @@
             padding: 0;
             min-height: 100vh;
         }
-
+        .ribbon {
+            background: linear-gradient(90deg, #fca510 0%, #16213e 100%);
+            color: #e6f7ff;
+            display: flex;
+            align-items: center;
+            padding: 0 18px;
+            height: 64px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 2px 12px rgba(22,33,62,0.15);
+        }
+        .ribbon-logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            color: #16213e;
+            background: #fca510;
+            border-radius: 10px;
+            padding: 8px 18px;
+            margin-right: 32px;
+        }
+        .ribbon-nav {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+        }
+        .ribbon-nav a {
+            color: #e6f7ff;
+            text-decoration: none;
+            font-size: 1.07rem;
+            font-weight: 600;
+            padding: 6px 18px;
+            border-radius: 20px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .ribbon-nav a:hover,
+        .ribbon-nav a.active {
+            background: #e6f7ff;
+            color: #16213e;
+        }
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -97,9 +137,29 @@
             margin-top: 1rem;
             opacity: 0.7;
         }
+        @media (max-width: 900px) {
+            .container { max-width: 99vw; }
+        }
+        @media (max-width: 600px) {
+            .container { padding: 1rem 0.2rem; }
+            h1 { font-size: 1.3rem; }
+            button { width: 100%; font-size: 1rem; }
+        }
     </style>
 </head>
 <body>
+    <div class="ribbon">
+        <span class="ribbon-logo">SoulScape</span>
+        <nav class="ribbon-nav">
+            <a href="bookretreat.html">Book Retreat</a>
+            <a href="selfreflect.html">Self Reflect</a>
+            <a href="soulLibrary.html">Soul Library</a>
+            <a href="store.html">Store</a>
+            <a href="volunteer.html">Volunteer</a>
+            <a href="review.html">Review</a>
+            <a href="founder.html">Founder</a>
+        </nav>
+    </div>
     <div class="container" id="welcome-page">
         <header>
             <h1>Spiritual Reflection Assessment</h1>
