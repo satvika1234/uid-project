@@ -6,10 +6,10 @@
     <title>Spiritual Reflection - Results</title>
     <style>
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: Garamond, serif;
             line-height: 1.6;
-            color: #4a3b36;
-            background: linear-gradient(135deg, #f8f4e9 0%, #eee5d6 100%);
+            color: #e6f7ff;
+            background: #1a1a2e;
             margin: 0;
             padding: 0;
             min-height: 100vh;
@@ -19,8 +19,8 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 2rem;
-            background-color: #fff;
-            box-shadow: 0 10px 30px rgba(120, 90, 70, 0.1);
+            background-color: #16213e;
+            box-shadow: 0 10px 30px rgba(22, 33, 62, 0.2);
             border-radius: 15px;
             margin-top: 50px;
             margin-bottom: 50px;
@@ -29,12 +29,12 @@
         header {
             text-align: center;
             margin-bottom: 2rem;
-            border-bottom: 2px solid #e6d9c5;
+            border-bottom: 2px solid #e6f7ff;
             padding-bottom: 1rem;
         }
 
         h1 {
-            color: #7e5941;
+            color: #fca510;
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
             font-weight: 600;
@@ -43,7 +43,7 @@
 
         p.intro {
             font-size: 1.1rem;
-            color: #6b5c50;
+            color: #e6f7ff;
             margin-bottom: 2rem;
             font-weight: 300;
         }
@@ -51,7 +51,7 @@
         .result-section {
             margin-bottom: 2rem;
             padding-bottom: 1.5rem;
-            border-bottom: 1px solid #e6d9c5;
+            border-bottom: 1px solid #e6f7ff;
         }
 
         .result-section:last-child {
@@ -59,7 +59,7 @@
         }
 
         .result-title {
-            color: #7e5941;
+            color: #fca510;
             font-size: 1.8rem;
             margin-bottom: 1rem;
             text-align: center;
@@ -69,14 +69,14 @@
         .score-display {
             font-size: 2rem;
             font-weight: bold;
-            color: #a68069;
+            color: #e6f7ff;
             text-align: center;
             margin: 1rem 0;
         }
 
         button {
-            background: linear-gradient(135deg, #a68069 0%, #7e5941 100%);
-            color: white;
+            background: linear-gradient(135deg, #fca510 0%, #e6f7ff 100%);
+            color: #16213e;
             border: none;
             padding: 1rem 2rem;
             font-size: 1.1rem;
@@ -91,9 +91,10 @@
         }
 
         button:hover {
-            background: linear-gradient(135deg, #9a725c 0%, #6a4c38 100%);
+            background: linear-gradient(135deg, #fca510 0%, #1a1a2e 100%);
+            color: #e6f7ff;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(126, 89, 65, 0.2);
+            box-shadow: 0 5px 15px rgba(252, 165, 16, 0.2);
         }
 
         .fade-in {
@@ -105,26 +106,26 @@
             to { opacity: 1; }
         }
 
-        /* Mandala-inspired decoration for headers */
         header::after {
             content: "☸";
             display: block;
             text-align: center;
             font-size: 2rem;
-            color: #c1a183;
+            color: #fca510;
             margin-top: 1rem;
-            opacity: 0.6;
+            opacity: 0.7;
         }
 
         .personal-greeting {
             text-align: center;
             font-size: 1.5rem;
             margin-bottom: 2rem;
-            color: #7e5941;
+            color: #fca510;
         }
 
         .username {
             font-weight: bold;
+            color: #fca510;
         }
     </style>
 </head>
@@ -160,25 +161,20 @@
             <p id="path-description"></p>
         </div>
 
-<button onclick="startOver()">Take Assessment Again</button>
+        <button onclick="startOver()">Take Assessment Again</button>
     </div>
 
     <script>
-        // Function to retrieve values from session storage
         function getStoredValue(key, defaultValue = '3') {
             const value = sessionStorage.getItem(key);
             return value ? value : defaultValue;
         }
 
-        // Calculate and display results
         window.onload = function() {
-            // Get username
             const userName = sessionStorage.getItem('userName');
             if (userName) {
                 document.getElementById('user-name').textContent = userName;
             }
-            
-            // Retrieve all question values
             const values = {
                 q1: parseInt(getStoredValue('q1')),
                 q2: parseInt(getStoredValue('q2')),
@@ -191,19 +187,10 @@
                 q9: parseInt(getStoredValue('q9')),
                 q10: parseInt(getStoredValue('q10'))
             };
-            
-            // Calculate scores (grouping questions into categories)
-            // Self-awareness: q3, q4, q6, q9
             const selfScore = ((values.q3 + values.q4 + values.q6 + values.q9) / 20 * 5).toFixed(1);
-            
-            // Spiritual connection: q1, q2, q5, q7, q8, q10
             const spiritualScore = ((values.q1 + values.q2 + values.q5 + values.q7 + values.q8 + values.q10) / 30 * 5).toFixed(1);
-            
-            // Set scores in display
             document.getElementById('self-score').textContent = selfScore;
             document.getElementById('spiritual-score').textContent = spiritualScore;
-            
-            // Self-awareness descriptions
             let selfDescription = '';
             if (selfScore < 2) {
                 selfDescription = "You may benefit from developing a stronger sense of self-awareness. Consider incorporating regular reflection into your daily routine, perhaps through journaling or mindful moments throughout your day. By building self-awareness, you'll gain clarity about your values and purpose.";
@@ -215,8 +202,6 @@
                 selfDescription = "You have exceptional self-awareness. Your ability to understand yourself, align with your values, and find gratitude even in difficult times is remarkable. You likely serve as an inspiration to others around you in this regard.";
             }
             document.getElementById('self-description').textContent = selfDescription;
-            
-            // Spiritual connection descriptions
             let spiritualDescription = '';
             if (spiritualScore < 2) {
                 spiritualDescription = "You may not currently feel a strong spiritual connection in your life. This doesn't mean spirituality isn't for you - perhaps you haven't found a practice or perspective that resonates with your authentic self. Exploration with an open mind might reveal surprising insights.";
@@ -228,11 +213,8 @@
                 spiritualDescription = "You have a profound spiritual connection that permeates your daily experience. You regularly experience transcendent moments and maintain practices that nurture your inner peace. Your spiritual life likely provides you with resilience, purpose, and profound joy.";
             }
             document.getElementById('spiritual-description').textContent = spiritualDescription;
-            
-            // Path forward based on both scores
             let pathDescription = '';
             const avgScore = (parseFloat(selfScore) + parseFloat(spiritualScore)) / 2;
-            
             if (parseFloat(selfScore) > parseFloat(spiritualScore) + 1) {
                 pathDescription = "Your results suggest you have strong self-awareness but might benefit from exploring spiritual connection more deeply. Consider these paths forward:<br><br>" +
                 "<strong>1. Explore Contemplative Practices:</strong> Try meditation, mindfulness, or prayer to nurture your connection with something greater than yourself.<br><br>" +
@@ -269,8 +251,6 @@
             }
             document.getElementById('path-description').innerHTML = pathDescription;
         };
-        
-        // Function to start over
         function startOver() {
             window.location.href = 'selfreflect.html';
         }
