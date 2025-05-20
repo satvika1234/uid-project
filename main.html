@@ -1,102 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoulScape - Your Spiritual Journey</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Garamond', serif;
-        }
-        body {
-            background: url("diya2.jpg") no-repeat center center fixed;
-            background-size: cover;
-            color: #d1c7be;
-            text-align: center;
-        }
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 10, 10, 0.6);
-        }
-        .container {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            padding: 20px;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
-        }
-        h1 {
-            font-size: 60px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #e0d4c8;
-        }
-        p {
-            font-size: 22px;
-            margin-bottom: 40px;
-            max-width: 700px;
-        }
-        .buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-        .btn {
-            background: rgba(80, 50, 120, 0.7);
-            padding: 15px 40px;
-            font-size: 20px;
-            border: 2px solid #d1c7be;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.4s;
-            color: #eae0d5;
-            text-transform: uppercase;
-        }
-        .btn:hover {
-            background: rgba(200, 160, 250, 0.9);
-            color: #1a1a1a;
-        }
-        .quote {
-            margin-top: 50px;
-            font-style: italic;
-            font-size: 18px;
-            opacity: 0.8;
-        }
-        .footer {
-            position: absolute;
-            bottom: 10px;
-            width: 100%;
-            font-size: 14px;
-            opacity: 0.7;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>SoulScape | Explore the Soulful Journey</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      font-family: Garamond, serif;
+      background: #1a1a2e;
+      color: #e6f7ff;
+      margin: 0;
+      padding: 0;
+    }
+    .ribbon {
+      background: linear-gradient(90deg, #fca510 0%, #16213e 100%);
+      color: #e6f7ff;
+      display: flex;
+      align-items: center;
+      padding: 0 18px;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 12px rgba(22,33,62,0.15);
+    }
+    .ribbon-logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      color: #16213e;
+      background: #fca510;
+      border-radius: 10px;
+      padding: 8px 18px;
+      margin-right: 32px;
+    }
+    .ribbon-nav {
+      display: flex;
+      gap: 20px;
+      flex: 1;
+    }
+    .ribbon-nav a {
+      color: #e6f7ff;
+      text-decoration: none;
+      font-size: 1.07rem;
+      font-weight: 600;
+      padding: 6px 18px;
+      border-radius: 20px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .ribbon-nav a:hover,
+    .ribbon-nav a.active {
+      background: #e6f7ff;
+      color: #16213e;
+    }
+    .main-section {
+      max-width: 1050px;
+      margin: 30px auto;
+      padding: 32px 20px;
+      background: #16213e;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(22,33,62,0.18);
+    }
+    .sections-scroll {
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+    .feature-row {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .feature-row.reverse {
+      flex-direction: row-reverse;
+    }
+    .feature-image {
+      flex: 1 1 300px;
+      max-width: 340px;
+      height: 220px;
+      background: #e6f7ff;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(252,165,16,0.09);
+    }
+    .feature-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+    .feature-description {
+      flex: 2 1 350px;
+      color: #e6f7ff;
+      font-size: 1.13rem;
+      background: #1a1a2e;
+      border-radius: 12px;
+      padding: 18px 26px;
+      text-align: left;
+    }
+    .section-title {
+      color: #fca510;
+      font-size: 1.65rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    @media (max-width: 900px) {
+      .main-section { padding: 15px 4vw; }
+      .feature-row, .feature-row.reverse { flex-direction: column; gap: 20px; }
+      .feature-description { padding: 12px 10px; }
+      .feature-image { width: 100%; max-width: 100%; height: 180px; }
+    }
+  </style>
 </head>
 <body>
-    <div class="overlay"></div>
-    <div class="container">
-        <h1>Welcome to SoulScape</h1>
-        <p>Step into the mystical realm of self-discovery, meditation, and divine energy. Unlock the secrets of the universe and align your soul with the cosmic flow.</p>
-        <div class="buttons">
-            <button class="btn" onclick="location.href='bookretreat.html'">Book Retreat</button>
-            <button class="btn" onclick="location.href='selfreflect.html'">Let's reflect</button>
-            <button class="btn" onclick="location.href='soulLibrary.html'">Soul Library</button>
-            <button class="btn" onclick="location.href='Store.html'">SoulScape Store</button>
+  <div class="ribbon">
+    <span class="ribbon-logo">SoulScape</span>
+    <nav class="ribbon-nav">
+      <a href="bookretreat.html">Book Retreat</a>
+      <a href="selfreflect.html">Self Reflect</a>
+      <a href="soulLibrary.html">Soul Library</a>
+      <a href="store.html">Store</a>
+      <a href="volunteer.html">Volunteer</a>
+      <a href="review.html">Review</a>
+      <a href="founder.html">Founder</a>
+    </nav>
+  </div>
+
+  <div class="main-section">
+    <h1 style="color:#fca510;text-align:center;font-size:2.3rem;margin-bottom:16px;">Welcome to SoulScape</h1>
+    <p style="text-align:center;max-width:640px;margin:0 auto 36px;">
+      Your sanctuary for soulful journeys, spiritual discovery, and holistic well-being. Explore our offerings below!
+    </p>
+    <div class="sections-scroll">
+      <!-- 1. BookRetreat -->
+      <div class="feature-row">
+        <div class="feature-image">
+          <!-- Upload your image as retreat.jpg -->
+          <img src="retreat.jpg" alt="Book a Spiritual Retreat"/>
         </div>
-        <p class="quote">“The soul always knows what to do to heal itself. The challenge is to silence the mind.” - Caroline Myss</p>
+        <div class="feature-description">
+          <div class="section-title">Book Retreat</div>
+          <p>
+            Embark on a transformative retreat at sacred destinations across India. Our interactive map lets you explore and book spiritual experiences in places like Rishikesh, Varanasi, Auroville, and Coimbatore. Click on a lotus to discover details and plan your soulful getaway!
+          </p>
+        </div>
+      </div>
+      <!-- 2. Self Reflect -->
+      <div class="feature-row reverse">
+        <div class="feature-image">
+          <!-- Upload your image as selfreflect.jpg -->
+          <img src="selfreflect.jpg" alt="Self Reflection"/>
+        </div>
+        <div class="feature-description">
+          <div class="section-title">Self Reflect</div>
+          <p>
+            Journey inward with our guided self-reflection tool. Answer thoughtful questions to gain insights into your spiritual connection, self-awareness, and areas for growth. Receive a personalized summary to illuminate your unique path.
+          </p>
+        </div>
+      </div>
+      <!-- 3. Soul Library -->
+      <div class="feature-row">
+        <div class="feature-image">
+          <!-- Upload your image as library.jpg -->
+          <img src="library.jpg" alt="Soul Library"/>
+        </div>
+        <div class="feature-description">
+          <div class="section-title">Soul Library</div>
+          <p>
+            Discover a curated collection of spiritual wisdom, practices, and resources. The Soul Library features guides on meditation, yoga, chakras, energy work, indigenous wisdom, and more. Search, browse, and deepen your spiritual knowledge at your own pace.
+          </p>
+        </div>
+      </div>
+      <!-- 4. Store -->
+      <div class="feature-row reverse">
+        <div class="feature-image">
+          <!-- Upload your image as store.jpg -->
+          <img src="store.jpg" alt="SoulScape Store"/>
+        </div>
+        <div class="feature-description">
+          <div class="section-title">Store</div>
+          <p>
+            Shop soulful essentials! Find aromatic candles, healing crystals, spiritual journals, meditation mats, incense, affirmation cards, and more. Our curated store brings you tools to enhance your spiritual journey and well-being.
+          </p>
+        </div>
+      </div>
+      <!-- 5. Volunteer -->
+      <div class="feature-row">
+        <div class="feature-image">
+          <!-- Upload your image as volunteer.jpg -->
+          <img src="volunteer.jpg" alt="Volunteer & Seva"/>
+        </div>
+        <div class="feature-description">
+          <div class="section-title">Volunteer</div>
+          <p>
+            Give back through seva (selfless service) with SoulScape. Join community meals, mindfulness outreach, eco-initiatives, art for children, event support, and more. Sign up to spread light and compassion in Bangalore and beyond.
+          </p>
+        </div>
+      </div>
+      <!-- 6. Review -->
+      <div class="feature-row reverse">
+        <div class="feature-image">
+          <!-- Upload your image as review.jpg -->
+          <img src="review.jpg" alt="Reviews"/>
+        </div>
+        <div class="feature-description">
+          <div class="section-title">Review</div>
+          <p>
+            Share your SoulScape experience! Read heartfelt testimonials from our community and let your voice inspire others. Whether it’s a retreat, a resource, or a product, your feedback helps us grow together.
+          </p>
+        </div>
+      </div>
+      <!-- 7. Founder -->
+      <div class="feature-row">
+        <div class="feature-image">
+          <!-- Upload your image as founder.jpg -->
+          <img src="founder.jpg" alt="Founder"/>
+        </div>
+        <div class="feature-description">
+          <div class="section-title">Founder</div>
+          <p>
+            Meet the heart behind SoulScape. Learn about our founder’s vision, journey, and commitment to fostering a soulful, connected community in Bangalore and beyond.
+          </p>
+        </div>
+      </div>
     </div>
-    <div class="footer">&copy; 2025 SoulScape | Connect with us on <a href="#">Instagram</a> | <a href="#">Facebook</a> | <a href="#">Twitter</a></div>
+  </div>
 </body>
 </html>
-
