@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SoulScape Cart</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Garamond', serif;
+            background-color: #1a1a2e;
+            color: #e6f7ff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #16213e;
+            padding: 20px 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .header h1 {
+            font-size: 40px;
+            margin: 0;
+        }
+
+        .back-link {
+            background-color: #a45ee5;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+
+        .back-link:hover {
+            background-color: #d2aaff;
+            color: #222;
+        }
+
+        .cart-container {
+            max-width: 900px;
+            margin: 40px auto;
+            background-color: #0f3460;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            flex-grow: 1;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            text-align: center;
+            color: #fca510;
+        }
+
+        .cart-items {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        .cart-items th,
+        .cart-items td {
+            padding: 15px 12px;
+            border-bottom: 1px solid #777;
+            text-align: left;
+        }
+
+        .cart-items th {
+            background-color: #6a4bcf;
+            color: #f1e8dc;
+        }
+
+        .cart-items td img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .remove-btn {
+            background-color: #d45e5e;
+            border: none;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .remove-btn:hover {
+            background-color: #f08080;
+            color: #222;
+        }
+
+        .total-section {
+            text-align: right;
+            font-size: 22px;
+            font-weight: bold;
+            color: #e3d7cb;
+            margin-bottom: 30px;
+        }
+
+        .empty-msg {
+            text-align: center;
+            font-size: 20px;
+            color: #ccc;
+            margin-top: 50px;
+        }
+
+        .checkout-container {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        #checkout-btn {
+            background-color: #8a2be2;
+            color: white;
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        #checkout-btn:hover {
+            background-color: #b57edc;
+            color: #222;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Your Cart</h1>
+        <button class="back-link" onclick="location.href='Store.html'">&larr; Continue Shopping</button>
+    </div>
+
+    <div class="cart-container">
+        <h2>Items in your cart</h2>
+        <table class="cart-items" id="cart-table">
+            <tbody id="cart-body">
+                <!-- Cart items will be dynamically added here -->
+            </tbody>
+        </table>
+
+        <div class="empty-msg" id="empty-msg" style="display:none;">
+            Your cart is empty.
+        </div>
+
+        <div class="total-section" id="total-section" style="display:none;">
+            Total Amount: ₹<span id="total-amount">0</span>
+        </div>
+    </div>
+
+    <div class="checkout-container">
+        <button id="checkout-btn">Checkout</button>
+    </div>
+
+    <script>
+        const cartBody = document.getElementById('cart-body');
+        const totalAmountEl = document.getElementById('total-amount');
+        const totalSection = document.getElementById('total-section');
+        const emptyMsg = document.getElementById('empty-msg');
+
+        // Load cart from localStorage or empty array
+        let cart = JSON.parse(localStorage.getItem('soulscapeCart')) || [];
+
+        function renderCart() {
+            cartBody.innerHTML = '';
+
+            if (cart.length === 0) {
+                emptyMsg.style.display = 'block';
+                totalSection.style.display = 'none';
+                return;
+            } else {
+                emptyMsg.style.display = 'none';
+                totalSection.style.display = 'block';
+            }
+
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                const subtotal = item.price * item.quantity;
+                total += subtotal;
+
+                const row = document.createElement('tr');
+
+                row.innerHTML = `
+                    <td><img src="${item.img}" alt="${item.name}"></td>
+                    <td>${item.name}</td>
+                    <td>${item.price}</td>
+                    <td>
+                        <input type="number" min="1" value="${item.quantity}" style="width: 60px;" data-index="${index}" class="qty-input">
+                    </td>
+                    <td>${subtotal}</td>
+                    <td><button class="remove-btn" data-index="${index}">Remove</button></td>
+                `;
+
+                cartBody.appendChild(row);
+            });
+
+            totalAmountEl.textContent = total.toFixed(2);
+
+            addEventListeners();
+        }
+
+        function addEventListeners() {
+            const removeButtons = document.querySelectorAll('.remove-btn');
+            removeButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const index = e.target.getAttribute('data-index');
+                    cart.splice(index, 1);
+                    updateCart();
+                });
+            });
+
+            const qtyInputs = document.querySelectorAll('.qty-input');
+            qtyInputs.forEach(input => {
+                input.addEventListener('change', (e) => {
+                    const index = e.target.getAttribute('data-index');
+                    let value = parseInt(e.target.value);
+                    if (isNaN(value) || value < 1) {
+                        value = 1;
+                        e.target.value = 1;
+                    }
+                    cart[index].quantity = value;
+                    updateCart();
+                });
+            });
+        }
+
+        function updateCart() {
+            localStorage.setItem('soulscapeCart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        document.getElementById('checkout-btn').addEventListener('click', () => {
+            localStorage.removeItem('soulscapeCart'); // Clear the cart data
+            alert('Thank you for your purchase! Redirecting to the store...');
+            window.location.href = 'Store.html'; // Redirect to store page
+        });
+
+        // Initialize cart rendering
+        renderCart();
+    </script>
+</body>
+
+</html>
