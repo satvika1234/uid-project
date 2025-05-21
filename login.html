@@ -1,82 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - SoulScape</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register - SoulScape</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: Arial, sans-serif;
-            background: url('login.jpeg') no-repeat center center fixed;
-            background-size: cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0d0d2b;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-        }
+    .form-container {
+      background: linear-gradient(135deg, #1a1a40, #2c2c54, #1e1e2e);
+      padding: 30px;
+      border-radius: 20px;
+      width: 350px;
+      box-shadow: 0 0 25px rgba(255, 193, 7, 0.2), 0 0 50px rgba(255, 213, 90, 0.1);
+      border: 2px solid #ffc107;
+      backdrop-filter: blur(6px);
+    }
 
-        .form-container {
-            background: rgba(30, 135, 154, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            width: 300px;
-        }
+    h2 {
+      text-align: center;
+      color: #ffc107;
+      font-family: 'Georgia', serif;
+      margin-bottom: 20px;
+    }
 
-        h2 {
-            text-align: center;
-        }
+    input, select {
+      width: 100%;
+      padding: 10px 15px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 50px;
+      background-color: #ffffff;
+      color: #0d0d2b;
+      font-size: 14px;
+    }
 
-        input, select {
-            width: 100%;
-            padding: 8px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+    input::placeholder {
+      color: #555;
+    }
 
-        button {
-            width: 100%;
-            padding: 10px;
-            background: rgb(12, 60, 155);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+    select {
+      color: #0d0d2b;
+    }
 
-        button:hover {
-            background: darkviolet;
-        }
-    </style>
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #ffc107;
+      color: #0d0d2b;
+      border: none;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #e0a800;
+    }
+  </style>
 </head>
 <body>
-    <div class="form-container">
-        <h2>Register</h2>
-        <form action="main.html" method="post">
-       <!-- <form action="#" method="post">-->
-            <input type="text" name="name" placeholder="Full Name" required>
-            <input type="tel" name="phone" placeholder="Phone Number" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <input type="number" name="age" placeholder="Age" required>
-            <select name="gender" required>
-                <option value="">Select Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-            </select>
-            <input type="date" name="dob" required>
-            
-           <button type="submit">Register</button>
-        </form>
-    </div>
+  <div class="form-container">
+    <h2>Register</h2>
+    <form action="main.html" method="post">
+      <input type="text" name="name" placeholder="Full Name" required>
+      <input type="tel" name="phone" placeholder="Phone Number" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <input type="number" name="age" placeholder="Age" required>
+      <select name="gender" required>
+        <option value="">Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+      <input type="date" name="dob" required>
+      <button type="submit">Register</button>
+    </form>
+  </div>
 </body>
 </html>
