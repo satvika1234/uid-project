@@ -5,12 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Register - SoulScape</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: #0d0d2b;
@@ -20,7 +15,6 @@
       align-items: center;
       height: 100vh;
     }
-
     .form-container {
       background: linear-gradient(135deg, #1a1a40, #2c2c54, #1e1e2e);
       padding: 30px;
@@ -30,14 +24,12 @@
       border: 2px solid #ffc107;
       backdrop-filter: blur(6px);
     }
-
     h2 {
       text-align: center;
       color: #ffc107;
       font-family: 'Georgia', serif;
       margin-bottom: 20px;
     }
-
     input, select {
       width: 100%;
       padding: 10px 15px;
@@ -48,15 +40,8 @@
       color: #0d0d2b;
       font-size: 14px;
     }
-
-    input::placeholder {
-      color: #555;
-    }
-
-    select {
-      color: #0d0d2b;
-    }
-
+    input::placeholder { color: #555; }
+    select { color: #0d0d2b; }
     button {
       width: 100%;
       padding: 12px;
@@ -69,10 +54,7 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
-
-    button:hover {
-      background-color: #e0a800;
-    }
+    button:hover { background-color: #e0a800; }
   </style>
 </head>
 <body>
@@ -98,8 +80,10 @@
     document.getElementById('register-form').onsubmit = function(e) {
       e.preventDefault();
       const name = document.getElementById('name').value.trim();
+
       sessionStorage.setItem('userName', name);
-      window.location.href = 'selfreflect.html';
+
+      window.location.href = 'main.html';
     }
   </script>
 </body>
