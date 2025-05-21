@@ -1,69 +1,70 @@
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
-    
-    <title>SoulScape</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Mystery+Quest&display=swap');
+  <title>SoulScape</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Mystery+Quest&display=swap');
 
-        
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        a {
-            text-decoration: none;
-        }
+    body, html {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
 
-        body{
-margin:0;
-}
+    a {
+      text-decoration: none;
+    }
 
-        @keyframes dripEffect {
-            0% { transform: translateY(0px); text-shadow: 6px 6px 15px rgba(0, 0, 0, 0.8); }
-            100% { transform: translateY(8px); text-shadow: 8px 8px 20px rgba(0, 0, 0, 1); }
-        }
-.container{
-width:100%;
-height:100vh;
-position:relative;
-}
+    .container {
+      position: relative;
+      height: 100vh;
+      width: 100vw;
+    }
 
-.container video{
-width:100%;
-height:100vh;
-object-fit:cover;
-}
+    .container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
 
-.text-box{
-position:absolute;
-top:0;
-left:0;
-background:#000;
-height:100%;
-width:100%;
-color:#fff;
-display:flex;
-font-family: 'Mystery Quest', cursive;
-align-items:center;
-justify-content: center;
-
-font-size:160px;
-font-weight:900;
-mix-blend-mode:multiply;
-}
-
-    </style>
+    .text-box {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Mystery Quest', cursive;
+      font-size: 160px;
+      font-weight: 900;
+      mix-blend-mode: multiply;
+    }
+  </style>
 </head>
 <body>
-    <a href="login.html">
-        <div class="container">
-            <video autoplay loop muted>
-                <source src="orange.mp4"
- type="video/mp4">
-        </div>
-       <div class="text-box">
-           <pre>   SOULSCAPE   </pre><br>
-
-
-       </div> 
-    </a>
+  <a href="login.html">
+    <div class="container">
+      <video autoplay loop muted>
+        <source src="orange.mp4" type="video/mp4" />
+      </video>
+      <div class="text-box">
+        SOULSCAPE
+      </div>
+    </div>
+  </a>
 </body>
 </html>
