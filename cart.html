@@ -146,7 +146,7 @@
 <body>
     <div class="header">
         <h1>Your Cart</h1>
-        <button class="back-link" onclick="location.href='Store.html'">&larr; Continue Shopping</button>
+        <button class="back-link" onclick="location.href='store.html'">&larr; Continue Shopping</button>
     </div>
 
     <div class="cart-container">
@@ -251,7 +251,7 @@
         document.getElementById('checkout-btn').addEventListener('click', () => {
             localStorage.removeItem('soulscapeCart'); // Clear the cart data
             alert('Thank you for your purchase! Redirecting to the store...');
-            window.location.href = 'Store.html'; // Redirect to store page
+            window.location.href = 'store.html'; // Redirect to store page
         });
 
         // Initialize cart rendering
